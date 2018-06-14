@@ -3,19 +3,20 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle:
+title: 技术分享
+subtitle: 可怜褒姒逢君子，都是周南梦里人
 description:
 keywords:
-author: John Doe
-language:
-timezone:
+author: 杨云召
+language: zh-CN
+timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://yoursite.com
 root: /
-permalink: :year/:month/:day/:title/
+#permalink: :year/:month/:day/:title/
+permalink: :year/:month/:day/:abbrlink.html
 permalink_defaults:
 
 # Directory
@@ -73,9 +74,17 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type:
+
+auto_category:
+  enable: true
+  depth:
+  
+abbrlink:
+  alg: crc32
+  rep: hex
