@@ -30,7 +30,7 @@ date: 2018-06-15 08:39:21
   ```shell
   systemctl  stop   firewalld.service
   ```
-
+  <!--more-->
   > 开启防火墙 
 
   ```shell
