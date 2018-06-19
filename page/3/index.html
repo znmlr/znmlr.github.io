@@ -305,6 +305,187 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/03/41237.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="杨云召">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="技术分享">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/03/41237.html" itemprop="url">
+                  Win下SVN目录锁死的解决办法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-05-03 17:14:34" itemprop="dateCreated datePublished" datetime="2018-05-03T17:14:34+08:00">2018-05-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-06-19 15:36:59" itemprop="dateModified" datetime="2018-06-19T15:36:59+08:00">2018-06-19</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/使用技巧/" itemprop="url" rel="index"><span itemprop="name">使用技巧</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/使用技巧/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h1><p>在windows下，如果上次更新SVN中断，下次执行别的操作时，偶尔会出现失败的提示，类似</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn cleanup failed–previous operation has not finished; run cleanup if it was interrupted</span><br></pre></td></tr></table></figure>
+<p>这个时候用任何命令都无法清理空间了</p>
+<h1 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h1><p><a href="http://www.sqliteexpert.com/download.html" target="_blank" rel="noopener">SQLite Expert Personal </a></p>
+<h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><p>打开<code>.svn</code>目录下的<code>wc.db</code>文件，清空<code>WORK_QUEUE</code>表</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/03/64638.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -368,7 +549,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-06-19 15:28:10" itemprop="dateModified" datetime="2018-06-19T15:28:10+08:00">2018-06-19</time>
+                <time title="修改时间：2018-06-19 15:36:59" itemprop="dateModified" datetime="2018-06-19T15:36:59+08:00">2018-06-19</time>
               
             
           </span>
@@ -546,7 +727,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-06-19 15:28:10" itemprop="dateModified" datetime="2018-06-19T15:28:10+08:00">2018-06-19</time>
+                <time title="修改时间：2018-06-19 15:36:59" itemprop="dateModified" datetime="2018-06-19T15:36:59+08:00">2018-06-19</time>
               
             
           </span>
@@ -728,7 +909,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-06-19 15:28:10" itemprop="dateModified" datetime="2018-06-19T15:28:10+08:00">2018-06-19</time>
+                <time title="修改时间：2018-06-19 15:36:59" itemprop="dateModified" datetime="2018-06-19T15:36:59+08:00">2018-06-19</time>
               
             
           </span>
@@ -909,7 +1090,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-06-19 15:28:10" itemprop="dateModified" datetime="2018-06-19T15:28:10+08:00">2018-06-19</time>
+                <time title="修改时间：2018-06-19 15:36:59" itemprop="dateModified" datetime="2018-06-19T15:36:59+08:00">2018-06-19</time>
               
             
           </span>
@@ -1091,7 +1272,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-06-19 15:28:10" itemprop="dateModified" datetime="2018-06-19T15:28:10+08:00">2018-06-19</time>
+                <time title="修改时间：2018-06-19 15:36:59" itemprop="dateModified" datetime="2018-06-19T15:36:59+08:00">2018-06-19</time>
               
             
           </span>
@@ -1272,7 +1453,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-06-19 15:28:10" itemprop="dateModified" datetime="2018-06-19T15:28:10+08:00">2018-06-19</time>
+                <time title="修改时间：2018-06-19 15:36:59" itemprop="dateModified" datetime="2018-06-19T15:36:59+08:00">2018-06-19</time>
               
             
           </span>
@@ -1453,7 +1634,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-06-19 15:28:10" itemprop="dateModified" datetime="2018-06-19T15:28:10+08:00">2018-06-19</time>
+                <time title="修改时间：2018-06-19 15:36:59" itemprop="dateModified" datetime="2018-06-19T15:36:59+08:00">2018-06-19</time>
               
             
           </span>
@@ -1634,7 +1815,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-06-19 15:28:10" itemprop="dateModified" datetime="2018-06-19T15:28:10+08:00">2018-06-19</time>
+                <time title="修改时间：2018-06-19 15:36:59" itemprop="dateModified" datetime="2018-06-19T15:36:59+08:00">2018-06-19</time>
               
             
           </span>
@@ -1815,7 +1996,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-06-19 15:28:10" itemprop="dateModified" datetime="2018-06-19T15:28:10+08:00">2018-06-19</time>
+                <time title="修改时间：2018-06-19 15:36:59" itemprop="dateModified" datetime="2018-06-19T15:36:59+08:00">2018-06-19</time>
               
             
           </span>
@@ -1920,187 +2101,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/03/43381.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="杨云召">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="技术分享">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/03/43381.html" itemprop="url">
-                  Windows批处理如何sleep
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-05-03 13:04:37" itemprop="dateCreated datePublished" datetime="2018-05-03T13:04:37+08:00">2018-05-03</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-06-19 15:28:10" itemprop="dateModified" datetime="2018-06-19T15:28:10+08:00">2018-06-19</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/使用技巧/" itemprop="url" rel="index"><span itemprop="name">使用技巧</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/使用技巧/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>在windows批处理中，没有sleep，可以变相实现<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/03/43381.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2148,7 +2148,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">35</span>
+                    <span class="site-state-item-count">36</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2173,7 +2173,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2234,7 +2236,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">24</span>
+                      
+                    
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
