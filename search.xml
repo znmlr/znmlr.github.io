@@ -1,0 +1,796 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+    
+    <entry>
+      <title>下拉框截图</title>
+      <link href="/2018/06/26/52242f17.html"/>
+      <url>/2018/06/26/52242f17.html</url>
+      <content type="html"><![CDATA[<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><blockquote><p>日常办公中，经常使用QQ截图，没有特意安装截图软件。QQ截图本身已经非常好用了，但是有个小问题，下拉框无法截图</p></blockquote><h1 id="笨办法"><a href="#笨办法" class="headerlink" title="笨办法"></a>笨办法</h1><blockquote><p>点出下拉框以后，用键盘上的<code>Print Screen</code>截图，放到<code>画图</code>中，然后再从中截图</p></blockquote><h1 id="巧办法"><a href="#巧办法" class="headerlink" title="巧办法"></a>巧办法</h1><ul><li>同时按住4个键：<code>Shift</code>+<code>Ctrl</code>+<code>Alt</code>+<code>A</code></li><li>点击下拉框，待弹出后，放掉<code>Shift</code>按键</li><li>此时会自动弹出QQ截图</li></ul><blockquote><p>当然前提是你安装并成功登陆了QQ</p></blockquote>]]></content>
+      
+      <categories>
+          
+          <category> 使用技巧 </category>
+          
+          <category> Windows </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 截图 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>SVN中使用钩子自动拷贝文件</title>
+      <link href="/2018/06/19/167cd7f6.html"/>
+      <url>/2018/06/19/167cd7f6.html</url>
+      <content type="html"><![CDATA[<h1 id="什么是钩子"><a href="#什么是钩子" class="headerlink" title="什么是钩子"></a>什么是钩子</h1><ul><li>我们经常提到的svn hooks（钩子）是一组“外挂”脚本程序， 是svn提供的一组由svn事件触发的特别有用的程序</li><li>钩子可以调用批处理文件、可执行文件或者一些类似于perl、python等的脚本</li></ul><h1 id="钩子有哪些"><a href="#钩子有哪些" class="headerlink" title="钩子有哪些"></a>钩子有哪些</h1>  <a id="more"></a><blockquote><p>懒得打字，直接上截图</p></blockquote><p><img src="https://znmlr-1251254271.cos.ap-shanghai.myqcloud.com/2018/06/SVN%E9%92%A9%E5%AD%90-1.png" alt=""></p><h1 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h1><blockquote><p>需求：希望A目录更新后，把固定的几个文件覆盖拷贝到B目录中</p></blockquote><ul><li><p>新建脚本</p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">del D:\workspace\project\B\* /F/S/Q</span><br><span class="line">copy D:\workspace\project\A D:\workspace\project\B\ /Y</span><br></pre></td></tr></table></figure></li><li><p>设置钩子</p><ol><li><p>在本地SVN文件夹上单击右键，选择属性</p></li><li><p>点击“Subversion”选项卡</p></li><li><p>点击“属性”按钮</p><p><img src="https://znmlr-1251254271.cos.ap-shanghai.myqcloud.com/2018/06/SVN%E9%92%A9%E5%AD%90-2.png" alt=""></p></li><li><p>点击“新建”—“本地钩子”</p><p><img src="https://znmlr-1251254271.cos.ap-shanghai.myqcloud.com/2018/06/SVN%E9%92%A9%E5%AD%90-3.png" alt=""></p></li><li><p>选择合适的钩子，然后填入脚本（包括路径信息）</p><p><img src="https://znmlr-1251254271.cos.ap-shanghai.myqcloud.com/2018/06/SVN%E9%92%A9%E5%AD%90-4.png" alt=""></p></li></ol></li><li><p>初次激活钩子时，系统可能会提示</p></li></ul>]]></content>
+      
+      <categories>
+          
+          <category> 使用技巧 </category>
+          
+          <category> Windows </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> svn </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>自建anki服务器</title>
+      <link href="/2018/06/16/79bd6352.html"/>
+      <url>/2018/06/16/79bd6352.html</url>
+      <content type="html"><![CDATA[<h1 id="为什么要自建"><a href="#为什么要自建" class="headerlink" title="为什么要自建"></a>为什么要自建</h1><ul><li>官方服务器在境外，不太可靠</li><li>免费软件，尽量减轻开发者的负担</li><li>数据在自己手里，比较放心</li></ul><h1 id="需要哪些条件"><a href="#需要哪些条件" class="headerlink" title="需要哪些条件"></a>需要哪些条件</h1><ul><li>linux环境的主机</li><li>公网ip</li><li><p>路由器上设置端口映射</p><a id="more"></a></li></ul><h1 id="自建的步骤"><a href="#自建的步骤" class="headerlink" title="自建的步骤"></a>自建的步骤</h1><h2 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h2><ul><li>安装python和pip</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install python-pip</span><br></pre></td></tr></table></figure><blockquote><p>我用的centos7，自带了python2.7，只需要安装pip即可</p></blockquote><h2 id="安装服务器"><a href="#安装服务器" class="headerlink" title="安装服务器"></a>安装服务器</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">easy_install AnkiServer</span><br></pre></td></tr></table></figure><blockquote><p>时间比较久，请耐心等待</p></blockquote><h2 id="建立配置脚本"><a href="#建立配置脚本" class="headerlink" title="建立配置脚本"></a>建立配置脚本</h2><ul><li><p>新建目录，用于存储anki相关数据</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /home/data</span><br><span class="line">mkdir anki</span><br></pre></td></tr></table></figure></li><li><p>拷贝配置脚本</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/lib/python2.7//site-packages/AnkiServer-2.0.6-py2.7.egg/examples/example.ini /home/data/anki/anki.ini</span><br></pre></td></tr></table></figure></li><li><p>修改参数</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">host= 10.XX.XX.XX  #自己服务器的地址也可是局域网IP</span><br><span class="line">allowed_hosts=0.0.0.0 #允许同步的客户端ip地址，使用0.0.0.0表示允许任何ip地址连接</span><br></pre></td></tr></table></figure></li></ul><h2 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ankiserverctl.py adduser username #创建用户</span><br><span class="line">ankiserverctl.py lsuser #验证</span><br></pre></td></tr></table></figure><h2 id="运行服务"><a href="#运行服务" class="headerlink" title="运行服务"></a>运行服务</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ankiserverctl.py debug ./production.ini#测试模式</span><br><span class="line">ankiserverctl.py start ./production.ini #正常模式</span><br></pre></td></tr></table></figure><h1 id="配置桌面程序"><a href="#配置桌面程序" class="headerlink" title="配置桌面程序"></a>配置桌面程序</h1><ul><li>打开插件文件夹</li></ul><p><img src="https://znmlr-1251254271.cos.ap-shanghai.myqcloud.com/2018/06/%E8%87%AA%E5%BB%BAanki%E6%9C%8D%E5%8A%A1%E5%99%A8-1.jpg" alt=""></p><ul><li>新建文本文件<code>mysyncserver.py</code></li></ul><p><img src="https://znmlr-1251254271.cos.ap-shanghai.myqcloud.com/2018/06/%E8%87%AA%E5%BB%BAanki%E6%9C%8D%E5%8A%A1%E5%99%A8-2.jpg" alt=""></p><ul><li><p>修改<code>mysyncserver.py</code>内容</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> anki.sync</span><br><span class="line">anki.sync.SYNC_BASE = <span class="string">'http://192.168.0.100:27701/'</span> <span class="comment"># 注意修改IP和端口</span></span><br><span class="line">anki.sync.SYNC_MEDIA_BASE = <span class="string">'http://192.168.0.100:27701/msync/'</span> <span class="comment"># 注意修改IP和端口</span></span><br></pre></td></tr></table></figure></li><li><p>重启anki，点击界面同步按钮</p><p><img src="https://znmlr-1251254271.cos.ap-shanghai.myqcloud.com/2018/06/%E8%87%AA%E5%BB%BAanki%E6%9C%8D%E5%8A%A1%E5%99%A8-3.jpg" alt=""></p></li><li><p>大功告成</p><blockquote><p>如果有问题，请在服务端运行debug模式，观察原因</p></blockquote></li></ul>]]></content>
+      
+      <categories>
+          
+          <category> 学习方法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> anki </tag>
+            
+            <tag> 神器 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>xampp初次使用可能遇到的问题</title>
+      <link href="/2018/06/15/97776a9f.html"/>
+      <url>/2018/06/15/97776a9f.html</url>
+      <content type="html"><![CDATA[<h1 id="安装完成后，只能本机访问"><a href="#安装完成后，只能本机访问" class="headerlink" title="安装完成后，只能本机访问"></a>安装完成后，只能本机访问</h1><ul><li><p>原因：centos的防火墙没有关闭</p></li><li><p>解决办法</p><blockquote><p>查看防火墙状态 </p></blockquote><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd    --state</span><br></pre></td></tr></table></figure><blockquote><p>关闭防火墙 </p></blockquote><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl  stop   firewalld.service</span><br></pre></td></tr></table></figure><a id="more"></a><blockquote><p>开启防火墙 </p></blockquote><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl  start   firewalld.service</span><br></pre></td></tr></table></figure><blockquote><p>禁止开机启动启动防火墙 </p></blockquote><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl   disable   firewalld.service</span><br></pre></td></tr></table></figure></li></ul><h1 id="xampp安装后，无法使用phpmyadmin"><a href="#xampp安装后，无法使用phpmyadmin" class="headerlink" title="xampp安装后，无法使用phpmyadmin"></a>xampp安装后，无法使用phpmyadmin</h1><ul><li><p>原因，默认设置只能从本机访问</p></li><li><p>修改配置文件<code>/opt/lampp/etc/extra/http-xampp.conf</code></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory "/opt/lampp/phpmyadmin"&gt;</span><br><span class="line">    AllowOverride AuthConfig Limit</span><br><span class="line">    #Require local   #原来的</span><br><span class="line">    Require all granted  #新的</span><br><span class="line">    ErrorDocument 403 /error/XAMPP_FORBIDDEN.html.var</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure></li></ul><h1 id="xampp安装后，mysql密码为空"><a href="#xampp安装后，mysql密码为空" class="headerlink" title="xampp安装后，mysql密码为空"></a>xampp安装后，mysql密码为空</h1><ul><li><p>在phpmyadmin中执行以下命令即可</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> mysql;</span><br><span class="line"><span class="keyword">update</span> <span class="keyword">user</span> <span class="keyword">set</span> host = <span class="string">'%'</span> <span class="keyword">where</span> <span class="keyword">user</span> = <span class="string">'root'</span>;</span><br><span class="line"><span class="keyword">FLUSH</span> <span class="keyword">PRIVILEGES</span>;</span><br></pre></td></tr></table></figure><blockquote><p>如果第二步报错，无须理会</p></blockquote></li></ul><h1 id="mysql配置密码后，phpmyadmin无法使用"><a href="#mysql配置密码后，phpmyadmin无法使用" class="headerlink" title="mysql配置密码后，phpmyadmin无法使用"></a>mysql配置密码后，phpmyadmin无法使用</h1><ul><li><p>修改phpmyadmin的配置文件<code>/opt/lampp/phpmyadmin/config.inc.php</code></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">cfg[<span class="string">'Servers'</span>][<span class="variable">$i</span>][<span class="string">'password'</span>] = <span class="string">'yourpasswd'</span>;</span></span><br></pre></td></tr></table></figure></li></ul>]]></content>
+      
+      <categories>
+          
+          <category> 使用技巧 </category>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> centos </tag>
+            
+            <tag> xampp </tag>
+            
+            <tag> apache </tag>
+            
+            <tag> mysql </tag>
+            
+            <tag> phpmyadmin </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>CentOS7关闭图形启动</title>
+      <link href="/2018/06/15/1d5ae2d7.html"/>
+      <url>/2018/06/15/1d5ae2d7.html</url>
+      <content type="html"><![CDATA[<h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><ul><li>利用淘宝购买的二手的瘦客户机充当家用服务器，性能较差</li><li>更新操作系统为最新的CentOS 7 1804，发现<code>gnome shell</code>进程占用大量CPU资源</li></ul><h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ul><li><p>查看当前运行级别</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@znmlr ~]# systemctl get-default</span><br><span class="line">graphical.target</span><br></pre></td></tr></table></figure><p>发现是图形界面启动，实际使用中并不需要图形界面，只需要文字界面启动即可</p></li><li><p>通过命令关闭图形启动</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@znmlr ~]# systemctl set-default multi-user.target</span><br><span class="line">Removed symlink /etc/systemd/system/default.target.</span><br><span class="line">Created symlink from /etc/systemd/system/default.target to /usr/lib/systemd/system/multi-user.target.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@znmlr ~]# systemctl get-default</span><br><span class="line">multi-user.target</span><br></pre></td></tr></table></figure></li><li><p>再次确认已经设置好</p></li></ul>]]></content>
+      
+      <categories>
+          
+          <category> 使用技巧 </category>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> centos </tag>
+            
+            <tag> 启动 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>CentOS7设置开机启动</title>
+      <link href="/2018/06/15/b2853b06.html"/>
+      <url>/2018/06/15/b2853b06.html</url>
+      <content type="html"><![CDATA[<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><blockquote><p>在新安装的CentOS7系统中，发现即使在<code>/etc/rc.local</code>中写了脚本，重启后也无法正常执行</p></blockquote><h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><ul><li>必须把<code>/etc/rc.d/rc.local</code>和<code>/etc/rc.local</code>两个文件同时赋予可执行权限</li><li>实际上，后者只是前者的软链接</li></ul><h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><ul><li>这个文件是为兼容性而添加的</li><li>在开机过程中强烈建议创建自己的systemd服务或udev规则来运行脚本，而不是使用此文件</li></ul>]]></content>
+      
+      <categories>
+          
+          <category> 使用技巧 </category>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> centos </tag>
+            
+            <tag> 自启动 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>控制台程序pritnf死锁问题</title>
+      <link href="/2018/06/14/47746511.html"/>
+      <url>/2018/06/14/47746511.html</url>
+      <content type="html"><![CDATA[<h1 id="printf死锁"><a href="#printf死锁" class="headerlink" title="printf死锁"></a>printf死锁</h1><blockquote><p>在win10下，只要点击一下控制台窗口的内容，就会进入选择模式</p><p>进而锁定屏幕，也就相当于阻塞了主线程！！！</p></blockquote>]]></content>
+      
+      <categories>
+          
+          <category> 编程实践 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 控制台 </tag>
+            
+            <tag> pritnf </tag>
+            
+            <tag> 死锁 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>CentOS7防火墙配置</title>
+      <link href="/2018/06/14/82587e7f.html"/>
+      <url>/2018/06/14/82587e7f.html</url>
+      <content type="html"><![CDATA[<blockquote><p>最近在家部署CentOS7， 发现以前CentOS 6 系列中的 iptables 相关命令不能用了</p><p>查了下，发现Centos 7使用firewalld代替了原来的iptables</p></blockquote><h1 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld.service           #停止firewall</span><br><span class="line">systemctl disable firewalld.service        #禁止firewall开机启动</span><br></pre></td></tr></table></figure><h1 id="开启端口"><a href="#开启端口" class="headerlink" title="开启端口"></a>开启端口</h1>  <a id="more"></a><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=80/tcp --permanent</span><br><span class="line"></span><br><span class="line">命令含义：</span><br><span class="line">--zone #作用域</span><br><span class="line">--add-port=80/tcp #添加端口，格式为：端口/通讯协议</span><br><span class="line">--permanent #永久生效，没有此参数重启后失效</span><br></pre></td></tr></table></figure><h1 id="重启防火墙"><a href="#重启防火墙" class="headerlink" title="重启防火墙"></a>重启防火墙</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure><h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --state                           ##查看防火墙状态，是否是running</span><br><span class="line">firewall-cmd --reload                          ##重新载入配置，比如添加规则之后，需要执行此命令</span><br><span class="line">firewall-cmd --get-zones                       ##列出支持的zone</span><br><span class="line">firewall-cmd --get-services                    ##列出支持的服务，在列表中的服务是放行的</span><br><span class="line">firewall-cmd --query-service ftp               ##查看ftp服务是否支持，返回yes或者no</span><br><span class="line">firewall-cmd --add-service=ftp                 ##临时开放ftp服务</span><br><span class="line">firewall-cmd --add-service=ftp --permanent     ##永久开放ftp服务</span><br><span class="line">firewall-cmd --remove-service=ftp --permanent  ##永久移除ftp服务</span><br><span class="line">firewall-cmd --add-port=80/tcp --permanent     ##永久添加80端口 </span><br><span class="line"></span><br><span class="line">iptables -L -n                                 ##查看规则，这个命令是和iptables的相同的</span><br><span class="line">man firewall-cmd                               ##查看帮助</span><br></pre></td></tr></table></figure>]]></content>
+      
+      <categories>
+          
+          <category> 使用技巧 </category>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> centos </tag>
+            
+            <tag> 防火墙 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>查看进程启动时间</title>
+      <link href="/2018/06/14/28e0c04a.html"/>
+      <url>/2018/06/14/28e0c04a.html</url>
+      <content type="html"><![CDATA[<h1 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h1><ul><li>点击“开始→运行”，在运行框里输入“msinfo32”打开“系统信息”窗口</li><li>依次点击“软件环境→正在运行任务”就可以查看到进程的详细信息，比如进程路径、文件创建日期、启动时间等等一目了然</li><li>对不熟悉的进程可以进一步检查，如果碰上系统进程显示的路径为“不可用”，则说明那就是可疑进程了，这也是查找木马文件的好方法。</li></ul>]]></content>
+      
+      <categories>
+          
+          <category> 使用技巧 </category>
+          
+          <category> Windows </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 进程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>关闭wps后台驻留进程</title>
+      <link href="/2018/06/14/49e263f5.html"/>
+      <url>/2018/06/14/49e263f5.html</url>
+      <content type="html"><![CDATA[<h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><ul><li>wps是一款非常优秀的国产办公软件，但是迫于各种压力，也开始耍流氓了：开机自启动，不能完全退出进程……，让人很烦恼</li><li>用wps而不是office的原因：1、wps对个人用户免费；2、wps小巧轻便</li></ul><h2 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h2><p>启动wps相关软件后，即使把软件关闭，后台也会有进程驻留</p><ul><li>wpsnotify.exe</li><li>wpscenter.exe</li><li><p>wpscloudsvr.exe</p><a id="more"></a></li></ul><h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><h2 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h2><ul><li><p>改造上述3个可执行程序，自己编译一个空程序来代替。原理非常简单</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> ** argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>直接把编译出来的可执行程序，重命名后覆盖上述3个exe即可</p></li></ul><blockquote><p>这样做有一个缺陷：很多wps的云服务无法使用</p></blockquote><h2 id="方案二"><a href="#方案二" class="headerlink" title="方案二"></a>方案二</h2><ul><li><p>思路：后台起一个服务，定时检测wps软件是否存在，如果存在则不处理；如果不存在则强制关闭上述3个进程</p></li><li><p>步骤1：在任务计划中，制定一个周期性任务，从早上9点开始，每5分钟执行一个vbs脚本</p></li><li><p>步骤2：vbs脚本，执行一个bat</p><figure class="highlight vbscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> ws=wscript.<span class="built_in">createobject</span>(<span class="string">"wscript.shell"</span>)</span><br><span class="line">ws.run <span class="string">"D:\ProgramData\bat\wps.bat /start"</span>,<span class="number">0</span></span><br></pre></td></tr></table></figure><blockquote><p>如果在任务计划中直接执行bat的话，会有dos窗口弹出，不优雅</p></blockquote></li><li><p>步骤3：在bat脚本中检查wps是否退出，并执行关闭操作</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> app1=wps.exe</span><br><span class="line"><span class="built_in">set</span> app2=et.exe</span><br><span class="line"><span class="built_in">set</span> app3=wpp.exe</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> Pr=0</span><br><span class="line"><span class="keyword">for</span> /f <span class="string">"tokens=1 delims= "</span> %%a <span class="keyword">in</span> (<span class="string">'tasklist ^| findstr /i "%app1% %app2% %app3%"'</span>) <span class="keyword">do</span> (</span><br><span class="line">    <span class="built_in">set</span> APP=%%~a</span><br><span class="line">    <span class="built_in">set</span> /a Pr+=1</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> %Pr% equ 0 (</span><br><span class="line">taskkill /im wpsnotify.exe /f</span><br><span class="line">taskkill /im wpscenter.exe /f</span><br><span class="line">taskkill /im wpscloudsvr.exe /f</span><br><span class="line">taskkill /im wpsoffice.exe /f</span><br><span class="line">)</span><br></pre></td></tr></table></figure><blockquote><p>wps.exe：类似于word</p><p>et.exe：类似于excel</p><p>wpp.exe：类似于ppt</p></blockquote></li></ul>]]></content>
+      
+      <categories>
+          
+          <category> 使用技巧 </category>
+          
+          <category> Windows </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> wps </tag>
+            
+            <tag> office </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Markdown中图片插入的近似优雅法</title>
+      <link href="/2018/05/06/4cabcca1.html"/>
+      <url>/2018/05/06/4cabcca1.html</url>
+      <content type="html"><![CDATA[<h1 id="最终实现效果"><a href="#最终实现效果" class="headerlink" title="最终实现效果"></a>最终实现效果</h1><ul><li>在图片上右键上传，自动生成markdown<code>图片链接格式</code>到剪切板中，任意地方<code>Ctrl+v</code>均可粘贴</li><li><p>在文件上右键上传，自动生成markdown<code>超链接格式</code>到剪切板中，任意地方<code>Ctrl+v</code>均可粘贴</p><a id="more"></a></li></ul><h1 id="markdown介绍"><a href="#markdown介绍" class="headerlink" title="markdown介绍"></a>markdown介绍</h1><ul><li>Markdown是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。 </li><li>Markdown的语法简洁明了、学习容易，10分钟即可完全学会掌握。Markdown 的语法全由一些符号所组成，这些符号经过精挑细选，其作用一目了然。 即使没有渲染器，以纯文本方式阅读，也毫无障碍。</li><li>对于开发人员还有一个特别棒的优点：得益于其纯文本属性，用markdown编写的文档、表格等，存放与svn/git/perforce以后，可以非常方便的使用比较工具，对比历史版本！这个word、excel……所不能或者不易办到的。</li></ul><h1 id="markdown的痛点"><a href="#markdown的痛点" class="headerlink" title="markdown的痛点"></a>markdown的痛点</h1><h2 id="图片保存现状"><a href="#图片保存现状" class="headerlink" title="图片保存现状"></a>图片保存现状</h2><p>成也萧何败也萧何，由于markdown的纯文本属性，决定了它不可能优雅的存储图片，在实践中有2种图形表示法</p><ul><li><p>markdown标准</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![Alt text](/path/to/img.jpg)</span><br></pre></td></tr></table></figure><blockquote><p>这样实际是存放的图片地址，而非图片本身</p></blockquote></li><li><p>html转义</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![](data:image/*;base64,iVBORw0KGgoAAAANSUhEUgAAAJgAAADZCAIAAABTpG6/AAANaklEQVR4Ae2de1BU1x3H97ILC8gCRh5RjC9sEozPaQc7TiCO02o6+aMZp8M/plOn/8TEtv/V/OMM5Z9OdPJPk5ohbWfazNSJ0o6dSf6IEkubYlLt1PgAwReagK7A4gPEFVjY7Xf3wOYII=)</span><br></pre></td></tr></table></figure><blockquote><p>以上是base64编码以后的二进制数据</p></blockquote></li></ul><p>上述2种方法，在书写markdown的过程中，都很不方便</p><h2 id="便利的编辑器"><a href="#便利的编辑器" class="headerlink" title="便利的编辑器"></a>便利的编辑器</h2><ul><li><p>typora</p><p>在windows下最好的markdown编辑器，没有之一</p><p>拖动图片到文档中，会自动拷贝图片到硬盘的指定位置，算是半自动化解决了问题</p><p>但是依然存在问题：分享为博客后，这些图片的路径很难正确处理</p></li></ul><h1 id="理想中的解决方案"><a href="#理想中的解决方案" class="headerlink" title="理想中的解决方案"></a>理想中的解决方案</h1><ul><li>在“我的电脑”中任意位置找到图片，右键点击“上传”，</li><li>自动生成markdown格式<code>![Alt text](http://***.***.***/***.jpg)</code>或者<code>[filedes](http://****.*****.***/***.zip)</code>在剪切板中</li><li>在任何文本/markdown编辑器中，直接<code>Ctrl+V</code>即可完成编写</li></ul><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="COS"><a href="#COS" class="headerlink" title="COS"></a>COS</h3><blockquote><p>对象存储（Cloud Object Storage，COS）</p></blockquote><p>我们需要一个空间，用于存放图片或者文件，这里推荐使用腾讯云或者七牛云</p><p>他们提供的免费额度足够普通用户使用了</p><h4 id="腾讯云的免费额度"><a href="#腾讯云的免费额度" class="headerlink" title="腾讯云的免费额度"></a>腾讯云的免费额度</h4><table><thead><tr><th>资源类型</th><th>资源子类型</th><th>每月免费额度</th></tr></thead><tbody><tr><td>存储空间</td><td>存储空间</td><td>50 GB</td></tr><tr><td>流量</td><td>外网下行流量</td><td>10 GB</td></tr><tr><td>流量</td><td>腾讯云 CDN 回源流量</td><td>10 GB</td></tr><tr><td>请求</td><td>读请求</td><td>100 万次</td></tr><tr><td>请求</td><td>写请求</td><td>100 万次</td></tr></tbody></table><h4 id="七牛云的免费额度"><a href="#七牛云的免费额度" class="headerlink" title="七牛云的免费额度"></a>七牛云的免费额度</h4><table><thead><tr><th>资源类型</th><th>免费额度</th></tr></thead><tbody><tr><td>标准存储空间</td><td>0-10 GB</td></tr><tr><td>每月上传流量</td><td>无上限</td></tr><tr><td>标准存储每月写请求 Put / Delete</td><td>0-10 万次</td></tr><tr><td>标准存储每月读请求 Get</td><td>0-100 万次</td></tr></tbody></table><h3 id="本地环境"><a href="#本地环境" class="headerlink" title="本地环境"></a>本地环境</h3><p>这里以腾讯云接口为例，本地需要<code>nodejs</code>运行环境</p><ul><li><a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">nodejs</a></li><li><p><a href="https://github.com/tencentyun/cos-nodejs-sdk-v5" target="_blank" rel="noopener">腾讯云SDK</a></p><h3 id="环境变量配置"><a href="#环境变量配置" class="headerlink" title="环境变量配置"></a>环境变量配置</h3></li><li><p>在<code>windows环境变量</code>中增加一项<code>NODE_PATH</code>，最好同时指向2处，例如：<code>C:\Users\ZNMLR\node_modules</code>和<code>C:\Users\ZNMLR\AppData\Roaming\npm\node_modules</code></p></li><li>前者对应npm的本地安装，后者对应npm的全局安装</li></ul><h1 id="开始优雅之旅"><a href="#开始优雅之旅" class="headerlink" title="开始优雅之旅"></a>开始优雅之旅</h1><h2 id="实现右键调用某bat"><a href="#实现右键调用某bat" class="headerlink" title="实现右键调用某bat"></a>实现右键调用某bat</h2><blockquote><p>目标：在任意格式文件上单击右键，弹出菜单“上传”，然后调用指定bat</p></blockquote><ul><li><p>打开注册表编辑器</p><p><code>WIN+R</code>调用运行库，输入<code>regedit</code>，会打开注册表编辑器</p><p><img src="https://znmlr-1251254271.cos.ap-shanghai.myqcloud.com/2018/05/markdwon%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87_1.png" alt=""></p></li><li><p>找到<code>计算机\HKEY_CLASSES_ROOT\*\shell</code></p><p><img src="https://znmlr-1251254271.cos.ap-shanghai.myqcloud.com/2018/05/markdwon%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87_2.png" alt=""></p></li><li><p>新建项，名字随意</p><p><img src="https://znmlr-1251254271.cos.ap-shanghai.myqcloud.com/2018/05/markdwon%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87_3.png" alt=""></p></li><li><p>再新建<code>command</code>子项，并修改右侧默认值</p><p><img src="https://znmlr-1251254271.cos.ap-shanghai.myqcloud.com/2018/05/markdwon%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87_4.png" alt=""></p><p>图中的D:\1.bat是我测试用的，其存放于某合理的地方</p></li><li><p>修改批处理内容，测试是否工作</p><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">%1%</span></span><br><span class="line"><span class="built_in">pause</span></span><br><span class="line"><span class="keyword">exit</span></span><br></pre></td></tr></table></figure><p>该批处理暂时只获取输入参数，并打印出来</p><p>然后等待用户敲个<code>Enter</code>就自动退出了</p></li><li><p>右键点击任意文件</p><p><img src="https://znmlr-1251254271.cos.ap-shanghai.myqcloud.com/2018/05/markdwon%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87_5.png" alt=""></p></li><li><p>查看运行效果</p></li></ul><p><img src="https://znmlr-1251254271.cos.ap-shanghai.myqcloud.com/2018/05/markdwon%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87_6.png" alt=""></p><h2 id="不那么严肃的声明"><a href="#不那么严肃的声明" class="headerlink" title="不那么严肃的声明"></a>不那么严肃的声明</h2><p>今天是我用nodejs的第二天，代码可能写不那么符合标准不那么优雅，见谅</p><p>如果发现有更好的优化方法，请发邮件通知我，谢谢 yangyunzhao#qq.com</p><h2 id="安装腾讯云SDK"><a href="#安装腾讯云SDK" class="headerlink" title="安装腾讯云SDK"></a>安装腾讯云SDK</h2><ul><li><p>安装nodejs运行环境</p><p>这个没什么好说的，双击下一步就好了</p></li><li><p>安装sdk</p><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">C:\<span class="title">Users</span>\<span class="title">ZNMLR</span>&gt;<span class="title">npm</span> <span class="title">i</span> <span class="title">cos</span>-<span class="title">nodejs</span>-<span class="title">sdk</span>-<span class="title">v5</span> --<span class="title">save</span> -<span class="title">g</span></span></span><br><span class="line"><span class="function">+ <span class="title">cos</span>-<span class="title">nodejs</span>-<span class="title">sdk</span>-<span class="title">v5</span>@2.4.0</span></span><br><span class="line"><span class="function"><span class="title">added</span> 68 <span class="title">packages</span> <span class="title">in</span> 10.082<span class="title">s</span></span></span><br></pre></td></tr></table></figure></li><li><p>再次安装sdk</p><blockquote><p>不要问我为何有这一步，腾讯云文档这样写的  </p><p>先下载<a href="https://github.com/tencentyun/cos-nodejs-sdk-v5" target="_blank" rel="noopener">腾讯云SDK</a>，解压，到指定目录执行命令</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\ZNMLR&gt;d:</span><br><span class="line">D:\&gt;cd cos-nodejs-sdk-v5-master</span><br><span class="line">D:\cos-nodejs-sdk-v5-master&gt;npm install -g</span><br><span class="line">+ cos-nodejs-sdk-v5@2.4.0</span><br><span class="line">updated 1 package in 6.33s</span><br></pre></td></tr></table></figure></li></ul><h2 id="获取腾讯云上传鉴权码"><a href="#获取腾讯云上传鉴权码" class="headerlink" title="获取腾讯云上传鉴权码"></a>获取腾讯云上传鉴权码</h2><ul><li><p>请到<a href="https://cloud.tencent.com/product/cos" target="_blank" rel="noopener">腾讯云</a>注册账号并实名认证，</p></li><li><p>新建存储桶</p></li><li><p>获取APPID、SecretId、SecretKey、存储桶名称、所属地域 </p><p>以上步骤请自行阅读腾讯云文档，这里不做说明</p></li></ul><h2 id="编写上传脚本"><a href="#编写上传脚本" class="headerlink" title="编写上传脚本"></a>编写上传脚本</h2><h3 id="官方示例"><a href="#官方示例" class="headerlink" title="官方示例"></a>官方示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// 引入模块</span><br><span class="line">var COS = require(&apos;cos-nodejs-sdk-v5&apos;);</span><br><span class="line">// 创建实例</span><br><span class="line">var cos = new COS(&#123;</span><br><span class="line">    AppId: &apos;1250000000&apos;,   // 修改为自己的appid</span><br><span class="line">    SecretId: &apos;AKIDxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&apos;, // 修改为自己的SecretId</span><br><span class="line">    SecretKey: &apos;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&apos;, // 修改为自己的SecretKey</span><br><span class="line">&#125;);</span><br><span class="line">// 分片上传</span><br><span class="line">cos.sliceUploadFile(&#123;</span><br><span class="line">    Bucket: &apos;test&apos;, // 修改为自己的存储桶名称，由英文、数字和标点符号组成</span><br><span class="line">    Region: &apos;ap-guangzhou&apos;, // 修改为自己的所属地域，应该是纯英文的部分</span><br><span class="line">    Key: &apos;1.zip&apos;, // 这个是远端的地址</span><br><span class="line">    FilePath: &apos;./1.zip&apos; // 这个是本地地址</span><br><span class="line">&#125;, function (err, data) &#123;</span><br><span class="line">    console.log(err, data);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>执行js文件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">D:\&gt;node 2.js</span><br><span class="line">warning: AppId has been deprecated, Please put it at the end of parameter Bucket(E.g: &quot;test-1250000000&quot;).</span><br><span class="line">(node:11824) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.</span><br><span class="line">null &#123; Location: &apos;**********.cos.ap-shanghai.myqcloud.com/1.png&apos;,</span><br><span class="line">  Bucket: &apos;*****&apos;,</span><br><span class="line">  Key: &apos;1.png&apos;,</span><br><span class="line">  ETag: &apos;&quot;*******************-1&quot;&apos;,</span><br><span class="line">  statusCode: 200,</span><br><span class="line">  headers:</span><br><span class="line">   &#123; &apos;content-type&apos;: &apos;application/xml&apos;,</span><br><span class="line">     &apos;transfer-encoding&apos;: &apos;chunked&apos;,</span><br><span class="line">     connection: &apos;close&apos;,</span><br><span class="line">     date: &apos;Sun, 06 May 2018 03:38:13 GMT&apos;,</span><br><span class="line">     server: &apos;tencent-cos&apos;,</span><br><span class="line">     &apos;x-cos-request-id&apos;: &apos;************************&apos; &#125; &#125;</span><br></pre></td></tr></table></figure><blockquote><p>上传成功了</p><p>敏感信息用*号代替了</p><p>但是文件在根目录下</p></blockquote><p>###优化：上传到指定路径</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">var filepath=&apos;D:/135.png&apos;;</span><br><span class="line">var filename = filepath.substring(filepath.lastIndexOf(&quot;/&quot;)+1); </span><br><span class="line">var today = new Date();</span><br><span class="line">var year = today.getFullYear();</span><br><span class="line">var month = today.getMonth() + 1;</span><br><span class="line">var urlkey=year+&quot;/&quot;+(month&lt;10?&apos;0&apos;+month:month)+&quot;/&quot;+filename;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 引入模块</span><br><span class="line">var COS = require(&apos;cos-nodejs-sdk-v5&apos;);</span><br><span class="line">// 创建实例</span><br><span class="line">var cos = new COS(&#123;</span><br><span class="line">    AppId: &apos;*&apos;,</span><br><span class="line">    SecretId: &apos;*&apos;,</span><br><span class="line">    SecretKey: &apos;*&apos;,</span><br><span class="line">&#125;);</span><br><span class="line">// 分片上传</span><br><span class="line">cos.sliceUploadFile(&#123;</span><br><span class="line">    Bucket: &apos;*&apos;,</span><br><span class="line">    Region: &apos;*&apos;,</span><br><span class="line">    Key: urlkey,</span><br><span class="line">    FilePath: filepath</span><br><span class="line">&#125;, function (err, data) &#123;</span><br><span class="line">    console.log(err, data);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>执行脚本</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">D:\&gt;node 2.js</span><br><span class="line">warning: AppId has been deprecated, Please put it at the end of parameter Bucket(E.g: &quot;test-1250000000&quot;).</span><br><span class="line">(node:7620) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.</span><br><span class="line">null &#123; Location: &apos;*.cos.*.myqcloud.com/2018/05/135.png&apos;,</span><br><span class="line">  Bucket: &apos;*&apos;,</span><br><span class="line">  Key: &apos;2018/05/135.png&apos;,</span><br><span class="line">  ETag: &apos;&quot;*-1&quot;&apos;,</span><br><span class="line">  statusCode: 200,</span><br><span class="line">  headers:</span><br><span class="line">   &#123; &apos;content-type&apos;: &apos;application/xml&apos;,</span><br><span class="line">     &apos;transfer-encoding&apos;: &apos;chunked&apos;,</span><br><span class="line">     connection: &apos;close&apos;,</span><br><span class="line">     date: &apos;Sun, 06 May 2018 04:16:42 GMT&apos;,</span><br><span class="line">     server: &apos;tencent-cos&apos;,</span><br><span class="line">     &apos;x-cos-request-id&apos;: &apos;*=&apos; &#125; &#125;</span><br></pre></td></tr></table></figure><p>查看返回值Location生成路径已经有年月了</p><h3 id="优化：上传后自动存放在剪切板"><a href="#优化：上传后自动存放在剪切板" class="headerlink" title="优化：上传后自动存放在剪切板"></a>优化：上传后自动存放在剪切板</h3><p>略</p><h3 id="优化：生成markdown格式"><a href="#优化：生成markdown格式" class="headerlink" title="优化：生成markdown格式"></a>优化：生成markdown格式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">var picsuffix=new Array(&quot;.jpg&quot;, &quot;.png&quot;, &quot;.bmp&quot;, &quot;.jpeg&quot;);</span><br><span class="line">function contains(arr, obj) &#123;</span><br><span class="line">  var i = arr.length;</span><br><span class="line">  while (i--) &#123;</span><br><span class="line">    if (arr[i] === obj) &#123;</span><br><span class="line">      return true;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return false;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var filepath=&apos;D:/tk.db&apos;;</span><br><span class="line">var filename = filepath.substring(filepath.lastIndexOf(&quot;/&quot;)+1); </span><br><span class="line">var today = new Date();</span><br><span class="line">var year = today.getFullYear();</span><br><span class="line">var month = today.getMonth() + 1;</span><br><span class="line">var urlkey=year+&quot;/&quot;+(month&lt;10?&apos;0&apos;+month:month)+&quot;/&quot;+filename;</span><br><span class="line">var suffix=filename.substring(filename.lastIndexOf(&quot;.&quot;), filename.length);</span><br><span class="line"></span><br><span class="line">// 引入模块</span><br><span class="line">var COS = require(&apos;cos-nodejs-sdk-v5&apos;);</span><br><span class="line">// 创建实例</span><br><span class="line">var cos = new COS(&#123;</span><br><span class="line">    AppId: &apos;*&apos;,</span><br><span class="line">    SecretId: &apos;*&apos;,</span><br><span class="line">    SecretKey: &apos;*&apos;,</span><br><span class="line">&#125;);</span><br><span class="line">// 分片上传</span><br><span class="line">cos.sliceUploadFile(&#123;</span><br><span class="line">    Bucket: &apos;*&apos;,</span><br><span class="line">    Region: &apos;*&apos;,</span><br><span class="line">    Key: urlkey,</span><br><span class="line">    FilePath: filepath</span><br><span class="line">&#125;, function (err, data) &#123;</span><br><span class="line">    console.log(err, data);</span><br><span class="line">const util = require(&apos;util&apos;);</span><br><span class="line">var url=&apos;&apos;;</span><br><span class="line">if (contains(picsuffix, suffix)) &#123;</span><br><span class="line">url=&apos;![](https://&apos;+data.Location+&apos;)&apos;;</span><br><span class="line">&#125;</span><br><span class="line">else &#123;</span><br><span class="line">url=&apos;[](https://&apos;+data.Location+&apos;)&apos;;</span><br><span class="line">&#125;</span><br><span class="line">require(&apos;child_process&apos;).spawn(&apos;clip&apos;).stdin.end(url);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><ul><li>这次定义了数组picsuffix，实现了图片与文件生成不同的字符串</li><li>实现了自动拷贝到剪切板的功能</li></ul><h2 id="关联bat与上传脚本"><a href="#关联bat与上传脚本" class="headerlink" title="关联bat与上传脚本"></a>关联bat与上传脚本</h2><ul><li><p>修改之前的bat批处理文件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">node D:\2.js %1%</span><br><span class="line">exit</span><br></pre></td></tr></table></figure></li><li><p>修改js脚本</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">var picsuffix=new Array(&quot;.jpg&quot;, &quot;.png&quot;, &quot;.bmp&quot;, &quot;.jpeg&quot;);</span><br><span class="line">function contains(arr, obj) &#123;</span><br><span class="line">  var i = arr.length;</span><br><span class="line">  while (i--) &#123;</span><br><span class="line">    if (arr[i] === obj) &#123;</span><br><span class="line">      return true;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return false;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var filepath=process.argv.splice(2).toString();</span><br><span class="line">var filename = filepath.substring(filepath.lastIndexOf(&quot;\\&quot;)+1); </span><br><span class="line">var today = new Date();</span><br><span class="line">var year = today.getFullYear();</span><br><span class="line">var month = today.getMonth() + 1;</span><br><span class="line">var urlkey=year+&quot;/&quot;+(month&lt;10?&apos;0&apos;+month:month)+&quot;/&quot;+filename;</span><br><span class="line">var suffix=filename.substring(filename.lastIndexOf(&quot;.&quot;), filename.length);</span><br><span class="line"></span><br><span class="line">// 引入模块</span><br><span class="line">var COS = require(&apos;cos-nodejs-sdk-v5&apos;);</span><br><span class="line">// 创建实例</span><br><span class="line">var cos = new COS(&#123;</span><br><span class="line">    AppId: &apos;*&apos;,</span><br><span class="line">    SecretId: &apos;*&apos;,</span><br><span class="line">    SecretKey: &apos;*&apos;,</span><br><span class="line">&#125;);</span><br><span class="line">// 分片上传</span><br><span class="line">cos.sliceUploadFile(&#123;</span><br><span class="line">    Bucket: &apos;*&apos;,</span><br><span class="line">    Region: &apos;*&apos;,</span><br><span class="line">    Key: urlkey,</span><br><span class="line">    FilePath: filepath</span><br><span class="line">&#125;, function (err, data) &#123;</span><br><span class="line">if(err)&#123;</span><br><span class="line">console.log(err);</span><br><span class="line">&#125;</span><br><span class="line">else&#123;</span><br><span class="line">console.log(data);</span><br><span class="line">const util = require(&apos;util&apos;);</span><br><span class="line">var url=&apos;&apos;;</span><br><span class="line">if (contains(picsuffix, suffix)) &#123;</span><br><span class="line">url=&apos;![](https://&apos;+data.Location+&apos;)&apos;;</span><br><span class="line">&#125;</span><br><span class="line">else &#123;</span><br><span class="line">url=&apos;[](https://&apos;+data.Location+&apos;)&apos;;</span><br><span class="line">&#125;</span><br><span class="line">require(&apos;child_process&apos;).spawn(&apos;clip&apos;).stdin.end(url);</span><br><span class="line">&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li><li><p>大功告成</p></li></ul>]]></content>
+      
+      <categories>
+          
+          <category> 使用技巧 </category>
+          
+          <category> Markdown </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> markdown </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>CentOS6防火墙设置</title>
+      <link href="/2018/05/05/b3e37511.html"/>
+      <url>/2018/05/05/b3e37511.html</url>
+      <content type="html"><![CDATA[<h1 id="打开iptables的配置文件"><a href="#打开iptables的配置文件" class="headerlink" title="打开iptables的配置文件"></a>打开iptables的配置文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/iptables</span><br></pre></td></tr></table></figure>  <a id="more"></a><h1 id="全部修改完之后重启iptables"><a href="#全部修改完之后重启iptables" class="headerlink" title="全部修改完之后重启iptables"></a>全部修改完之后重启iptables</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service iptables restart</span><br></pre></td></tr></table></figure><ul><li><p>增加注释，需要另起一行，以# 开头</p></li><li><p>附FTP设置</p></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 开启20,21端口</span><br><span class="line">-A INPUT -p tcp -m multiport --dport 20,21  -m state --state NEW -j ACCEPT</span><br><span class="line"># 开启21主动端口</span><br><span class="line">-A INPUT -p tcp -m state --state NEW -m tcp --dport 21 -j ACCEPT</span><br><span class="line"># 开启被动端口   </span><br><span class="line">-A INPUT -p tcp --dport 30000:31000 -j ACCEPT</span><br></pre></td></tr></table></figure>]]></content>
+      
+      <categories>
+          
+          <category> 使用技巧 </category>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> centos </tag>
+            
+            <tag> 防火墙 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>gcc混合链接静态库与动态库</title>
+      <link href="/2018/05/05/ddcdb5c5.html"/>
+      <url>/2018/05/05/ddcdb5c5.html</url>
+      <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-Wl,-Bstatic  -levent_core</span><br><span class="line">-Wl,-Bdynamic -llog4cplus</span><br></pre></td></tr></table></figure><ul><li>链接libevent_core.a</li><li>链接liblog4cplus.so</li></ul>]]></content>
+      
+      <categories>
+          
+          <category> 编程实践 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> gcc </tag>
+            
+            <tag> 链接 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>linux下指定动态库的路径</title>
+      <link href="/2018/05/05/f5dcdcc5.html"/>
+      <url>/2018/05/05/f5dcdcc5.html</url>
+      <content type="html"><![CDATA[<h1 id="指定加载路径的方法"><a href="#指定加载路径的方法" class="headerlink" title="指定加载路径的方法"></a>指定加载路径的方法</h1><h2 id="配置-etc-ld-so-conf文件"><a href="#配置-etc-ld-so-conf文件" class="headerlink" title="配置/etc/ld.so.conf文件"></a>配置/etc/ld.so.conf文件</h2><p>可以通过编辑配置文件/etc/ld.so.conf来指定动态库的搜索路径，该文件中每行为一个动态库搜索路径。每次编辑完该文件后，都必须运行命令ldconfig使修改后的配置生效 </p>  <a id="more"></a><h2 id="配置环境变量LD-LIBRARY-PATH"><a href="#配置环境变量LD-LIBRARY-PATH" class="headerlink" title="配置环境变量LD_LIBRARY_PATH"></a>配置环境变量LD_LIBRARY_PATH</h2><p>通过设定环境变量LD_LIBRARY_PATH也可以指定动态库搜索路径。当通过该环境变量指定多个动态库搜索路径时，路径之间用冒号”：”分隔 </p><h2 id="编译目标代码时指定"><a href="#编译目标代码时指定" class="headerlink" title="编译目标代码时指定"></a>编译目标代码时指定</h2><p>还可以在编译目标代码时指定程序的动态库搜索路径。-Wl,表示后面的参数将传给link程序ld（因为gcc可能会自动调用ld）。这里通过gcc的参数”-Wl,-rpath,”指定。当指定多个动态库搜索路径时，路径之间用冒号”：”分隔 </p><h1 id="动态库搜索顺序"><a href="#动态库搜索顺序" class="headerlink" title="动态库搜索顺序"></a>动态库搜索顺序</h1><blockquote><p>先后顺序如下：</p></blockquote><ul><li>编译目标代码时指定的动态库搜索路径 </li><li>环境变量LD_LIBRARY_PATH指定的动态库搜索路径 </li><li>配置文件/etc/ld.so.conf中指定的动态库搜索路径 </li><li>默认的动态库搜索路径/lib </li><li>默认的动态库搜索路径/usr/lib </li></ul>]]></content>
+      
+      <categories>
+          
+          <category> 编程实践 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> gcc </tag>
+            
+            <tag> linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>基于瘦客户机的家用私有云解决方案</title>
+      <link href="/2018/05/04/75960ac2.html"/>
+      <url>/2018/05/04/75960ac2.html</url>
+      <content type="html"><![CDATA[<h1 id="构建目标【未完，编辑中】"><a href="#构建目标【未完，编辑中】" class="headerlink" title="构建目标【未完，编辑中】"></a>构建目标【未完，编辑中】</h1><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>本文所使用的所有技术，均不是笔者自研</p><p>笔者仅仅是把现有的软件、硬件合理组合使用，以满足家用需求</p><h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul><li><p>利用极为低廉的硬件和免费开源的软件，提供家用私有云解决方案</p></li><li><p>能达到群辉等私有云方案的大部分效果</p></li><li><p>特点：费用极其低廉（与商业解决方案相比）</p><a id="more"></a></li></ul><h2 id="对外服务"><a href="#对外服务" class="headerlink" title="对外服务"></a>对外服务</h2><h3 id="SVN"><a href="#SVN" class="headerlink" title="SVN"></a>SVN</h3><ul><li>版本管理服务</li></ul><h3 id="云存储"><a href="#云存储" class="headerlink" title="云存储"></a>云存储</h3><ul><li><p>类似百度云（收费服务）、金山云盘（已关闭）</p></li><li><p>文件存储在<code>私有云</code>，用户可以下载上传</p></li><li><p>可以设定共享目录，所有对该目录的操作会自动同步到<code>私有云</code></p><blockquote><ul><li>如果在家和公司均安装客户端的话，在家里新增一份文件，到公司可以继续修改，再次回到家里可以接着编辑</li><li>在家里上传一张照片，老家的父母电脑上就可以自动出现这张照片</li></ul></blockquote></li><li><p>可以根据不同账户，划分不同权限</p></li></ul><h3 id="局域网共享磁盘"><a href="#局域网共享磁盘" class="headerlink" title="局域网共享磁盘"></a>局域网共享磁盘</h3><h3 id="虚拟主机"><a href="#虚拟主机" class="headerlink" title="虚拟主机"></a>虚拟主机</h3><h3 id="mysql数据库"><a href="#mysql数据库" class="headerlink" title="mysql数据库"></a>mysql数据库</h3><h3 id="mongodb数据库"><a href="#mongodb数据库" class="headerlink" title="mongodb数据库"></a>mongodb数据库</h3><h3 id="云笔记-博客"><a href="#云笔记-博客" class="headerlink" title="云笔记/博客"></a>云笔记/博客</h3><h3 id="任何你可以想象到的"><a href="#任何你可以想象到的" class="headerlink" title="任何你可以想象到的"></a>任何你可以想象到的</h3><p>而又有linux实现的服务</p><h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><h3 id="开关机"><a href="#开关机" class="headerlink" title="开关机"></a>开关机</h3><h3 id="远程定位"><a href="#远程定位" class="headerlink" title="远程定位"></a>远程定位</h3>]]></content>
+      
+      <categories>
+          
+          <category> 建站笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 私有云 </tag>
+            
+            <tag> svn </tag>
+            
+            <tag> owncloud </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>windows神器cmder使用简介</title>
+      <link href="/2018/05/04/88da169d.html"/>
+      <url>/2018/05/04/88da169d.html</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>cmder是一个跨平台的命令行增强工具，可以集成windows batch、power shell、git、linux bash等多种命令行于一体，十分方便 </p>  <a id="more"></a><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p><a href="https://github.com/cmderdev/cmder/releases/" target="_blank" rel="noopener">github地址</a></p><p><a href="http://cmder.net/" target="_blank" rel="noopener">官网</a></p><h2 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h2><p>随意解压到任意目录，然后添加到<code>环境变量</code>下</p><h1 id="使用技巧"><a href="#使用技巧" class="headerlink" title="使用技巧"></a>使用技巧</h1><h2 id="只启动一个实例"><a href="#只启动一个实例" class="headerlink" title="只启动一个实例"></a>只启动一个实例</h2><p><img src="https://znmlr-1251254271.cos.ap-shanghai.myqcloud.com/2018/05/windows%E7%A5%9E%E5%99%A8cmder%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B_1.png" alt="只启动一个实例"></p><h2 id="右键快捷打开目录"><a href="#右键快捷打开目录" class="headerlink" title="右键快捷打开目录"></a>右键快捷打开目录</h2><p>管理员权限打开cmder，执行下面的命令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cdmer /register user</span><br><span class="line">// 或</span><br><span class="line">cmder /register all</span><br></pre></td></tr></table></figure><h2 id="注册为系统cmd"><a href="#注册为系统cmd" class="headerlink" title="注册为系统cmd"></a>注册为系统cmd</h2><p><img src="https://znmlr-1251254271.cos.ap-shanghai.myqcloud.com/2018/05/windows%E7%A5%9E%E5%99%A8cmder%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B_2.png" alt="注册为系统cmd"></p>]]></content>
+      
+      <categories>
+          
+          <category> 使用技巧 </category>
+          
+          <category> Windows </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 神器 </tag>
+            
+            <tag> 批处理 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>win10下svn图标不显示</title>
+      <link href="/2018/05/04/11fd2e3b.html"/>
+      <url>/2018/05/04/11fd2e3b.html</url>
+      <content type="html"><![CDATA[<ul><li><code>window+R</code>调用运行，输入<code>regedit</code>打开 注册表</li><li><code>ctrl+F</code>，搜<code>ShellIconOverlayIdentifiers</code>项</li><li>在<code>1TortoiseNormal</code>、<code>2TortoiseModified</code>等貌似9个svn相关的项，前面增加3个空格</li><li>修改完成后重启电脑，即可显示图标。</li></ul>]]></content>
+      
+      <categories>
+          
+          <category> 使用技巧 </category>
+          
+          <category> Windows </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> svn </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>批处理中同步/异步调用</title>
+      <link href="/2018/05/04/cb2a76e.html"/>
+      <url>/2018/05/04/cb2a76e.html</url>
+      <content type="html"><![CDATA[<p>在批处理中调用别的批处理，可以分为同步和异步</p> <figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">call</span> ***     --- 同步</span><br><span class="line"><span class="built_in">start</span> ***    --- 异步</span><br></pre></td></tr></table></figure>]]></content>
+      
+      <categories>
+          
+          <category> 使用技巧 </category>
+          
+          <category> Windows </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 批处理 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>批处理中获取当前路径</title>
+      <link href="/2018/05/04/81a8c5d7.html"/>
+      <url>/2018/05/04/81a8c5d7.html</url>
+      <content type="html"><![CDATA[<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">echo</span> 当前盘符：%~d0</span><br><span class="line"><span class="built_in">echo</span> 当前盘符和路径：%~dp0</span><br><span class="line"><span class="built_in">echo</span> 当前批处理全路径：%~f0</span><br><span class="line"><span class="built_in">echo</span> 当前盘符和路径的短文件名格式：%~sdp0</span><br><span class="line"><span class="built_in">echo</span> 当前<span class="built_in">CMD</span>默认目录：<span class="variable">%cd%</span></span><br></pre></td></tr></table></figure>]]></content>
+      
+      <categories>
+          
+          <category> 使用技巧 </category>
+          
+          <category> Windows </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 批处理 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>linux下命令行管理VMWare</title>
+      <link href="/2018/05/04/602bd5b4.html"/>
+      <url>/2018/05/04/602bd5b4.html</url>
+      <content type="html"><![CDATA[<h1 id="虚拟机管理"><a href="#虚拟机管理" class="headerlink" title="虚拟机管理"></a>虚拟机管理</h1><ul><li><p>关机 </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vmrun stop &quot;/opt/VMware/win2k8r2.vmx&quot; hard | soft</span><br><span class="line">// 强制关闭虚拟机(相当于直接关电源) | 正常关闭虚拟机</span><br></pre></td></tr></table></figure><a id="more"></a></li><li><p>重启 </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vmrun reset &quot;/opt/VMware/win2k8r2.vmx&quot; hard | soft</span><br><span class="line">// 冷重启虚拟机 | 热重启虚拟机</span><br></pre></td></tr></table></figure></li><li><p>挂起 </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vmrun suspend  &quot;/opt/VMware/win2k8r2.vmx&quot; hard | soft</span><br><span class="line">// 挂起虚拟机（可能相当于休眠）</span><br></pre></td></tr></table></figure></li><li><p>查询 </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vmrun list </span><br><span class="line">// 列出正在运行的虚拟机</span><br></pre></td></tr></table></figure></li><li><p>图形化开机 </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vmrun start &quot;/opt/VMware/win2k8r2.vmx&quot; </span><br><span class="line">// gui启动带图形界面虚拟机</span><br></pre></td></tr></table></figure></li><li><p>无图形化开机 </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vmrun -T ws start &quot;/opt/VMware/win2k8r2.vmx&quot; nogui</span><br><span class="line">// 启动无图形界面虚拟机  （-T 是区分宿主机的类型，ws|server|server1|fusion|esx|vc|player，可能比较常用的是ws、esx和player，不过我没有加-T在Workstation也能正常运行, 可能esx和server就需要了）</span><br></pre></td></tr></table></figure></li></ul><h1 id="快照管理"><a href="#快照管理" class="headerlink" title="快照管理"></a>快照管理</h1><ul><li><p>创建快照 </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vmrun -T ws snapshot &quot;/opt/VMware/win2k8r2.vmx&quot; snapshotName</span><br><span class="line">// 创建一个快照</span><br></pre></td></tr></table></figure></li><li><p>列出快照 </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vmrun -T ws listSnapshots &quot;/opt/VMware/win2k8r2.vmx&quot;</span><br><span class="line">// 列出虚拟机快照数量及名称</span><br></pre></td></tr></table></figure></li><li><p>从快照恢复 </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vmrun -T ws reverToSnapshot &quot;/opt/VMware/win2k8r2.vmx&quot; snapshotName </span><br><span class="line">// 从一个快照中恢复虚拟机</span><br></pre></td></tr></table></figure></li><li><p>删除快照 </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vmrun -T ws deleteSnapshot1 &quot;/opt/VMware/win2k8r2.vmx&quot; snapshotName </span><br><span class="line">// 删除一个快照</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+      
+      <categories>
+          
+          <category> 使用技巧 </category>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    <entry>
+      <title>Windows下创建一个没有窗口的控制台程序</title>
+      <link href="/2018/05/04/e4a7498c.html"/>
+      <url>/2018/05/04/e4a7498c.html</url>
+      <content type="html"><![CDATA[<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> comment( linker, <span class="meta-string">"/subsystem:\"windows\" /entry:\"mainCRTStartup\""</span>)</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      <categories>
+          
+          <category> 使用技巧 </category>
+          
+          <category> Windows </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    <entry>
+      <title>Win下SVN目录锁死的解决办法</title>
+      <link href="/2018/05/03/41237.html"/>
+      <url>/2018/05/03/41237.html</url>
+      <content type="html"><![CDATA[<h1 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h1><p>在windows下，如果上次更新SVN中断，下次执行别的操作时，偶尔会出现失败的提示，类似</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn cleanup failed–previous operation has not finished; run cleanup if it was interrupted</span><br></pre></td></tr></table></figure><p>这个时候用任何命令都无法清理空间了</p><h1 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h1><p><a href="http://www.sqliteexpert.com/download.html" target="_blank" rel="noopener">SQLite Expert Personal </a></p><h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><p>打开<code>.svn</code>目录下的<code>wc.db</code>文件，清空<code>WORK_QUEUE</code>表</p>]]></content>
+      
+      <categories>
+          
+          <category> 使用技巧 </category>
+          
+          <category> Windows </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> svn </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>让批处理后台运行</title>
+      <link href="/2018/05/03/64638.html"/>
+      <url>/2018/05/03/64638.html</url>
+      <content type="html"><![CDATA[<p>通过vbs调用bat，即可实现。vbs格式如下</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set ws=wscript.createobject(&quot;wscript.shell&quot;)</span><br><span class="line">ws.run &quot;D:\ProgramData\bat\Hexo.bat /start&quot;,0</span><br></pre></td></tr></table></figure>]]></content>
+      
+      <categories>
+          
+          <category> 使用技巧 </category>
+          
+          <category> Windows </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 批处理 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>svn查看日志，显示连接服务器失败</title>
+      <link href="/2018/05/03/62801.html"/>
+      <url>/2018/05/03/62801.html</url>
+      <content type="html"><![CDATA[<h1 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h1><blockquote><p>svn查看日志显示连接服务器失败。你想使用缓存中的数据吗？后面还有三个选项“立即离线、永远离线、取消“<br>  <a id="more"></a></p></blockquote><h1 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h1><blockquote><p>将svnserve.conf里的anon-access=read 改为anon-access=none</p></blockquote>]]></content>
+      
+      <categories>
+          
+          <category> 使用技巧 </category>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> svn </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>CentOS查看系统启动时间</title>
+      <link href="/2018/05/03/35977.html"/>
+      <url>/2018/05/03/35977.html</url>
+      <content type="html"><![CDATA[<h1 id="查看-proc-uptime文件"><a href="#查看-proc-uptime文件" class="headerlink" title="查看/proc/uptime文件"></a>查看/proc/uptime文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/uptime  </span><br><span class="line">73064.44 276161.85</span><br></pre></td></tr></table></figure>  <a id="more"></a><p>第一数字即是系统已运行的时间73064.44 秒，运用系统工具date即可算出系统启动时间  </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">date -d &quot;$(awk -F. &apos;&#123;print $1&#125;&apos; /proc/uptime) second ago&quot; +&quot;%Y-%m-%d %H:%M:%S&quot;  </span><br><span class="line">2015-12-02 13:00:59</span><br></pre></td></tr></table></figure><h1 id="计算系统运行时间"><a href="#计算系统运行时间" class="headerlink" title="计算系统运行时间"></a>计算系统运行时间</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/uptime| awk -F. &apos;&#123;run_days=$1 / 86400;run_hour=($1 % 86400)/3600;run_minute=($1 % 3600)/60;run_second=$1 % 60;printf(&quot;系统已运行：%d天%d时%d分%d秒&quot;,run_days,run_hour,run_minute,run_second)&#125;&apos;  </span><br><span class="line"> </span><br><span class="line">系统已运行：0天20时19分26秒</span><br></pre></td></tr></table></figure>]]></content>
+      
+      <categories>
+          
+          <category> 使用技巧 </category>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> centos </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>linux计划任务</title>
+      <link href="/2018/05/03/41239.html"/>
+      <url>/2018/05/03/41239.html</url>
+      <content type="html"><![CDATA[<p>crond是比较简单易用的。</p><p>使用crontab -e编辑配置文件，格式如下：<br>  <a id="more"></a></p><table><thead><tr><th>Minute</th><th>Hour</th><th>Day</th><th>Month</th><th>Dayofweek</th><th>command</th></tr></thead><tbody><tr><td>分钟</td><td>小时</td><td>天</td><td>月</td><td>天每星期</td><td>命令</td></tr></tbody></table><p>例如：<br><code>50 15 * * * XXX</code><br>表示每天15点50执行XXX命令</p><p>crontab文件的一些例子：<br><code>30 21 * * * /usr/local/etc/rc.d/lighttpd restart</code><br>上面的例子表示每晚的21:30重启apache。</p><p><code>45 4 1,10,22 * * /usr/local/etc/rc.d/lighttpd restart</code><br>上面的例子表示每月1、10、22日的4 : 45重启apache。</p><p><code>10 1 * * 6,0 /usr/local/etc/rc.d/lighttpd restart</code><br>上面的例子表示每周六、周日的1 : 10重启apache。</p><p><code>0,30 18-23 * * * /usr/local/etc/rc.d/lighttpd restart</code><br>上面的例子表示在每天18 : 00至23 : 00之间每隔30分钟重启apache。</p><p><code>0 23 * * 6 /usr/local/etc/rc.d/lighttpd restart</code><br>上面的例子表示每星期六的11 : 00 pm重启apache。</p><p><code>* */1 * * * /usr/local/etc/rc.d/lighttpd restart</code><br>每一小时重启apache</p><p><code>* 23-7/1 * * * /usr/local/etc/rc.d/lighttpd restart</code><br>晚上11点到早上7点之间，每隔一小时重启apache</p><p><code>0 11 4 * mon-wed /usr/local/etc/rc.d/lighttpd restart</code><br>每月的4号与每周一到周三的11点重启apache</p><p><code>0 4 1 jan * /usr/local/etc/rc.d/lighttpd restart</code><br>一月一号的4点重启apache</p>]]></content>
+      
+      <categories>
+          
+          <category> 使用技巧 </category>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    <entry>
+      <title>linux下通过命令发送邮件</title>
+      <link href="/2018/05/03/35296.html"/>
+      <url>/2018/05/03/35296.html</url>
+      <content type="html"><![CDATA[<h1 id="下载安装msmtp"><a href="#下载安装msmtp" class="headerlink" title="下载安装msmtp"></a>下载安装msmtp</h1><p><a href="http://downloads.sourceforge.net/msmtp" target="_blank" rel="noopener">msmtp</a><br>下载后，解压、<code>configure make make install</code><br>  <a id="more"></a></p><h1 id="配置账号信息"><a href="#配置账号信息" class="headerlink" title="配置账号信息"></a>配置账号信息</h1><p>在用户目录下，新建文件.msmtprc，设置权限为0600<br>填写内容：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># Set default values for all following accounts.</span><br><span class="line">defaults</span><br><span class="line"></span><br><span class="line">logfile /usr/local/msmtp/msmtp.log</span><br><span class="line"># The SMTP server of the provider.</span><br><span class="line">account test</span><br><span class="line"></span><br><span class="line"># SMTP邮件服务器地址</span><br><span class="line">host smtp.qq.com</span><br><span class="line"></span><br><span class="line"># 发送的邮件Email</span><br><span class="line">from xiaobaichi@i0554.com</span><br><span class="line">auth login</span><br><span class="line"></span><br><span class="line"># 邮件服务器登录账号</span><br><span class="line">user xiaobaichi@i0554.com</span><br><span class="line"></span><br><span class="line"># 邮件服务器登陆密码</span><br><span class="line">password 123456</span><br><span class="line"># Set a default account</span><br><span class="line">account default : test</span><br></pre></td></tr></table></figure><h1 id="测试账号信息"><a href="#测试账号信息" class="headerlink" title="测试账号信息"></a>测试账号信息</h1><p><code>msmtp youremail@test.com</code> 看看能否收到信息</p><h1 id="安装配置mutt"><a href="#安装配置mutt" class="headerlink" title="安装配置mutt"></a>安装配置mutt</h1><p><code>yum install mutt</code></p><p>vi /etc/Muttrc ，编辑mutt的总设置，修改以下几行</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">set from=”发送邮件地址”</span><br><span class="line">set sendmail=”/usr/local/msmtp/bin/msmtp”</span><br><span class="line">set use_from=yes</span><br><span class="line">set realname=”发件人”</span><br><span class="line">set editor=”vi”</span><br></pre></td></tr></table></figure><p>发件地址最好与msmtp设置的账号相同，否则可能会出错。</p><h1 id="发送邮件"><a href="#发送邮件" class="headerlink" title="发送邮件"></a>发送邮件</h1><p><code>echo “test” |mutt -s “my_first_test” yangcheng@i0554.com</code></p>]]></content>
+      
+      <categories>
+          
+          <category> 使用技巧 </category>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    <entry>
+      <title>linux模拟网络延迟、丢包、乱序等</title>
+      <link href="/2018/05/03/8371.html"/>
+      <url>/2018/05/03/8371.html</url>
+      <content type="html"><![CDATA[<h1 id="延时设置"><a href="#延时设置" class="headerlink" title="延时设置"></a>延时设置</h1>  <a id="more"></a><p>设置延时：<code>tc qdisc add dev eth0 root netem delay 30ms</code><br>显示延时设置：<code>tc qdisc show</code><br>修改延时：<code>tc qdisc change dev eth0 root netem delay 40ms</code><br>删除延时：<code>tc qdisc del dev eth0 root netem delay 40ms</code><br>带波动延时：<code>tc qdisc add dev eth0 root netem delay 100ms 10ms</code><br>带概率波动：<code>tc qdisc add dev eth0 root netem delay 100ms 10ms 30%</code></p><h1 id="模拟丢包"><a href="#模拟丢包" class="headerlink" title="模拟丢包"></a>模拟丢包</h1><p><code>tc qdisc add dev eth0 root netem loss 1%</code><br>该命令将 eth0 网卡的传输设置为随机丢掉 1% 的数据包。<br><code>tc qdisc add dev eth0 root netem loss 1% 30%</code><br>该命令将 eth0 网卡的传输设置为随机丢掉 1% 的数据包，成功率为 30% 。</p><h1 id="模拟包重复"><a href="#模拟包重复" class="headerlink" title="模拟包重复"></a>模拟包重复</h1><p><code>tc qdisc add dev eth0 root netem duplicate 1%</code><br>该命令将 eth0 网卡的传输设置为随机产生 1% 的重复数据包 。</p><h1 id="模拟包损坏"><a href="#模拟包损坏" class="headerlink" title="模拟包损坏"></a>模拟包损坏</h1><p><code>tc qdisc add dev eth0 root netem corrupt 0.2%</code><br>该命令将 eth0 网卡的传输设置为随机产生 0.2% 的损坏的数据包</p><h1 id="模拟数据包乱序"><a href="#模拟数据包乱序" class="headerlink" title="模拟数据包乱序"></a>模拟数据包乱序</h1><p><code>tc qdisc change dev eth0 root netem delay 10ms reorder 25% 50%</code><br>该命令将 eth0 网卡的传输设置为:有 25% 的数据包（50%相关）会被立即发送，其他的延迟 10 秒</p>]]></content>
+      
+      <categories>
+          
+          <category> 使用技巧 </category>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    <entry>
+      <title>linux远程同步文件夹</title>
+      <link href="/2018/05/03/42618.html"/>
+      <url>/2018/05/03/42618.html</url>
+      <content type="html"><![CDATA[<h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><p>A、B两台linux主机，平时主要在主机A上存取文件，需要在某些特定时间点把主机A上的文件夹同步到主机B<br>  <a id="more"></a></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync -rzP –delete /home/AAAAA/ root@info.znmlr.cn:/home/BBBBB/</span><br></pre></td></tr></table></figure><ul><li>需要运行在主机A，从主机A的/home/AAAAA/目录自动同步到主机B（info.znmlr.cn，域名或者IP均可）的/home/BBBBB/目录 </li><li>前置条件：已经设置到ssh免密码登陆 </li></ul>]]></content>
+      
+      <categories>
+          
+          <category> 使用技巧 </category>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    <entry>
+      <title>windows同步linux文件夹</title>
+      <link href="/2018/05/03/20726.html"/>
+      <url>/2018/05/03/20726.html</url>
+      <content type="html"><![CDATA[<h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><p>有一台centos主机，上面运行了SVN服务。但是这个主机硬盘比较陈旧，担心硬盘损坏，所以得定期把服务器上的文件夹备份到本地磁盘上，避免数据丢失<br>  <a id="more"></a></p><h1 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h1><p><a href="https://winscp.net/eng/download.php" target="_blank" rel="noopener">winscp </a></p><ul><li>安装winscp并配置好登陆信息 </li><li>编写脚本 </li></ul><h2 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a>启动脚本</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C:</span><br><span class="line">cd &quot;C:\Program Files (x86)\WinSCP&quot;</span><br><span class="line">winscp.exe /console /script=D:\backup.bat</span><br></pre></td></tr></table></figure><blockquote><p>进入安装目录，以命令行模式启动，并且指定命令脚本 </p></blockquote><h2 id="命令脚本"><a href="#命令脚本" class="headerlink" title="命令脚本"></a>命令脚本</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">open root:password@192.168.1.144</span><br><span class="line">cd /home/data/backup</span><br><span class="line">lcd D:\ProgramData\backup</span><br><span class="line">option transfer binary</span><br><span class="line">option synchdelete on</span><br><span class="line">synchronize local</span><br><span class="line">close</span><br><span class="line">exit</span><br></pre></td></tr></table></figure><blockquote><p>打开连接，进入远程目录和本地目录，设定同步参数，执行同步命令(local是从远端到本地，remote是从本地到远端) </p></blockquote>]]></content>
+      
+      <categories>
+          
+          <category> 使用技巧 </category>
+          
+          <category> Windows </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    <entry>
+      <title>移除我的电脑中OneDrive和WPS云文档</title>
+      <link href="/2018/05/03/51124.html"/>
+      <url>/2018/05/03/51124.html</url>
+      <content type="html"><![CDATA[<h1 id="除去“我的电脑”中“WPS云文档”"><a href="#除去“我的电脑”中“WPS云文档”" class="headerlink" title="除去“我的电脑”中“WPS云文档”"></a>除去“我的电脑”中“WPS云文档”</h1><ul><li>强迫症患者福音</li><li><p>之前可以在配置工具中修改，但是现在不能了</p><a id="more"></a></li><li><p><code>win+r</code>输入<code>regedit</code>打开注册表，找到如下项目<code>\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace</code>点击浏览里面的项目，你就会找到有wps云文档的子项，删除就ok了</p></li><li>上面的方法可以去除“我的电脑”中的，但是左侧导航窗格里面还有，这里继续删除</li></ul><p><code>\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\</code>下面的项目</p><h1 id="Win10移除资源管理器中的OneDrive"><a href="#Win10移除资源管理器中的OneDrive" class="headerlink" title="Win10移除资源管理器中的OneDrive"></a>Win10移除资源管理器中的OneDrive</h1><p>国内OneDrive用处不大，可以通过修改注册表中删除资源管理器中的图标</p><ul><li>使用Win+R打开运行对话框，输入regedit打开注册表编辑器</li><li>定位到<code>HKEY_CLASSES_ROOT\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}</code>，在右边双击<code>System.IsPinnedToNameSpaceTree</code>这个键，将<code>System.IsPinnedToNameSpaceTree</code>中的值从1改为0</li></ul>]]></content>
+      
+      <categories>
+          
+          <category> 使用技巧 </category>
+          
+          <category> Windows </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    <entry>
+      <title>Windows批处理如何sleep</title>
+      <link href="/2018/05/03/43381.html"/>
+      <url>/2018/05/03/43381.html</url>
+      <content type="html"><![CDATA[<p>在windows批处理中，没有sleep，可以变相实现<br>  <a id="more"></a></p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ping -n <span class="number">3</span> <span class="number">127.0</span>.<span class="number">0.1</span> &gt; nul</span><br><span class="line">timeout /t <span class="number">3</span> /nobreak &gt; nul</span><br></pre></td></tr></table></figure><p>以上两种方式中的3都是需要sleep的秒数 </p>]]></content>
+      
+      <categories>
+          
+          <category> 使用技巧 </category>
+          
+          <category> Windows </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 批处理 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Windows命令行上传下载linux文件</title>
+      <link href="/2018/05/03/25846.html"/>
+      <url>/2018/05/03/25846.html</url>
+      <content type="html"><![CDATA[<h1 id="安装工具"><a href="#安装工具" class="headerlink" title="安装工具"></a>安装工具</h1><p>使用psftp.exe来完成</p><p><a href="https://www.putty.org/" target="_blank" rel="noopener">putty</a>或者<a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html" target="_blank" rel="noopener">putty</a><br>  <a id="more"></a></p><h1 id="下载文件"><a href="#下载文件" class="headerlink" title="下载文件"></a>下载文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">%~d0</span><br><span class="line">cd %~dp0</span><br><span class="line">echo get /home/%date:~0,4%-%date:~5,2%-%date:~8,2%.tar.bz2 E:\backup.tar.bz2 &gt; E:\cmd.txt</span><br><span class="line">psftp.exe root@192.168.2.31 -pw iampswd -b &quot;cmd.txt&quot; -bc</span><br><span class="line">del E:\cmd.txt /F/S/Q</span><br></pre></td></tr></table></figure><h1 id="上传文件"><a href="#上传文件" class="headerlink" title="上传文件"></a>上传文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">%~d0</span><br><span class="line">cd %~dp0</span><br><span class="line">echo put E:\1.txt /home/backup/1.txt &gt; E:\cmd.txt</span><br><span class="line">psftp.exe root@192.168.2.31 -pw iampswd -b &quot;cmd.txt&quot; -bc</span><br><span class="line">del E:\cmd.txt /F/S/Q</span><br></pre></td></tr></table></figure>]]></content>
+      
+      <categories>
+          
+          <category> 使用技巧 </category>
+          
+          <category> Windows </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    <entry>
+      <title>在WordPress的分类目录中显示所有目录</title>
+      <link href="/2018/05/03/21017.html"/>
+      <url>/2018/05/03/21017.html</url>
+      <content type="html"><![CDATA[<p>默认仅显示有文章的目录，没有文章的不显示<br>  <a id="more"></a></p><p>特殊需求下，可以修改主题的functions.php文件</p><p>文件路径<code>/htdocs/wp-content/themes/[主题名称]/functions.php</code></p><p>在文件头部增加代码如下 </p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">add_filter( <span class="string">'widget_categories_args'</span>, <span class="string">'wpdx_show_empty_cats'</span> );</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">wpdx_show_empty_cats</span><span class="params">($cat_args)</span> </span>&#123;</span><br><span class="line">    $cat_args[<span class="string">'hide_empty'</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> $cat_args;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      <categories>
+          
+          <category> 建站笔记 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    <entry>
+      <title>WordPress插件推荐</title>
+      <link href="/2018/05/03/63767.html"/>
+      <url>/2018/05/03/63767.html</url>
+      <content type="html"><![CDATA[<p>以下插件都是比较实用的，可以在后台直接从官方下载安装<br>  <a id="more"></a></p><ul><li><p>Easy WP SMTP </p><blockquote><p>邮件发送插件 </p></blockquote></li><li><p>Pinyin SEO </p><blockquote><p>便于SEO </p></blockquote></li><li><p>TablePress  </p><blockquote><p>在文章中插入美观的多功能表格 </p></blockquote></li><li><p>WordPress Database Backup </p><blockquote><p>备份数据库到本地或者邮箱 </p></blockquote></li><li><p>WP-GeSHi-Highlight  </p><blockquote><p>语法高亮，主要用代码展示 </p></blockquote></li><li><p>SVG Support </p><blockquote><p>支持SVG格式文件，配合XMind使用，效果很棒 </p></blockquote></li></ul>]]></content>
+      
+      <categories>
+          
+          <category> 建站笔记 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    <entry>
+      <title>Hexo建站笔记</title>
+      <link href="/2018/05/02/61245e5.html"/>
+      <url>/2018/05/02/61245e5.html</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul><li>Hexo 是一个快速、简洁且高效的博客框架</li><li>Hexo 使用 Markdown解析文章，在几秒内，即可利用靓丽的主题生成静态网页</li></ul><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="运行环境"><a href="#运行环境" class="headerlink" title="运行环境"></a>运行环境</h2><ul><li><a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a></li><li><a href="https://git-scm.com/download/win" target="_blank" rel="noopener">git</a><a id="more"></a></li></ul><h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure><h2 id="建站"><a href="#建站" class="headerlink" title="建站"></a>建站</h2><blockquote><p>路径最好不要有中文</p></blockquote><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init &lt;folder&gt;</span><br><span class="line">cd &lt;folder&gt;</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure><h2 id="发布静态页面"><a href="#发布静态页面" class="headerlink" title="发布静态页面"></a>发布静态页面</h2><blockquote><p>即从md文件生成html文件</p></blockquote><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure><h2 id="调试环境"><a href="#调试环境" class="headerlink" title="调试环境"></a>调试环境</h2><blockquote><p>可以使用hexo自带的调试服务器<code>hexo s</code></p><p>推荐使用http-server</p></blockquote><ul><li><p>安装http-server</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install http-server -g</span><br></pre></td></tr></table></figure></li><li><p>默认运行</p><blockquote><p>默认是 <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a></p></blockquote><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http-server &lt;path_of_project&gt;</span><br></pre></td></tr></table></figure></li><li><p>带参数运行</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http-server &lt;path_of_project&gt; -a 0.0.0.0 -p 8080</span><br></pre></td></tr></table></figure></li></ul><blockquote><p>这个时候打开 <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> 应该可以看到hexo自带的hello world 博文</p></blockquote><h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><blockquote><p>hexo推荐部署在github上，github免费且高速</p><p>也可以部署在任何虚拟主机上，国内免费托管还有coding、码云</p></blockquote><h2 id="关联github"><a href="#关联github" class="headerlink" title="关联github"></a>关联github</h2><h3 id="配置github"><a href="#配置github" class="headerlink" title="配置github"></a>配置github</h3><ul><li>注册账号</li><li>新建仓库</li></ul><h3 id="关联"><a href="#关联" class="headerlink" title="关联"></a>关联</h3><ul><li><p>设置git信息</p><p>在git的bash中，执行下面命令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;your-github-name&quot;</span><br><span class="line">git config --global user.email &quot;your-github-reg-email&quot;</span><br><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure></li><li><p>获取密钥</p><p>本地会生成2个密钥文件，选择其中任何一个均可，用记事本打开，复制其中内容</p><p><img src="https://znmlr-1251254271.cos.ap-shanghai.myqcloud.com/2018/05/Hexo%E5%BB%BA%E7%AB%99%E7%AC%94%E8%AE%B0_1.png" alt="Hexo建站笔记"></p></li><li><p>设置github密钥</p><p>在仓库的setting页面</p><p><img src="https://znmlr-1251254271.cos.ap-shanghai.myqcloud.com/2018/05/Hexo%E5%BB%BA%E7%AB%99%E7%AC%94%E8%AE%B0_2.png" alt="Hexo建站笔记"></p><p>有.pub结尾填入上方，没有的填入下方，二者填一个即可</p></li></ul><h2 id="自动部署"><a href="#自动部署" class="headerlink" title="自动部署"></a>自动部署</h2><blockquote><p>需要<code>hexo-deployer-git</code>插件支持</p></blockquote><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure><h2 id="将工程放入github"><a href="#将工程放入github" class="headerlink" title="将工程放入github"></a>将工程放入github</h2><h2 id="绑定二级域名"><a href="#绑定二级域名" class="headerlink" title="绑定二级域名"></a>绑定二级域名</h2><h1 id="常用插件"><a href="#常用插件" class="headerlink" title="常用插件"></a>常用插件</h1><p>## </p>]]></content>
+      
+      <categories>
+          
+          <category> 建站笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2018/05/02/4a17b156.html"/>
+      <url>/2018/05/02/4a17b156.html</url>
+      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>  <a id="more"></a><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+      
+      
+    </entry>
+    
+  
+  
+</search>
