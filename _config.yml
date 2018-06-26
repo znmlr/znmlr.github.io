@@ -92,3 +92,9 @@ auto_category:
 abbrlink:
   alg: crc32
   rep: hex
+  
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
