@@ -131,7 +131,7 @@ date: 2018-05-06 08:19:03
 
 - 修改批处理内容，测试是否工作
 
-  ```bat
+  ```powershell
   @echo off
   echo %1%
   pause
@@ -164,7 +164,7 @@ date: 2018-05-06 08:19:03
 
 - 安装sdk
 
-  ```bat
+  ```powershell
   C:\Users\ZNMLR>npm i cos-nodejs-sdk-v5 --save -g
   + cos-nodejs-sdk-v5@2.4.0
   added 68 packages in 10.082s
@@ -176,7 +176,7 @@ date: 2018-05-06 08:19:03
   >
   > 先下载[腾讯云SDK](https://github.com/tencentyun/cos-nodejs-sdk-v5)，解压，到指定目录执行命令
 
-  ```
+  ```powershell
   C:\Users\ZNMLR>d:
   D:\>cd cos-nodejs-sdk-v5-master
   D:\cos-nodejs-sdk-v5-master>npm install -g
@@ -199,7 +199,7 @@ date: 2018-05-06 08:19:03
 
 ### 官方示例
 
-```
+```javascript
 // 引入模块
 var COS = require('cos-nodejs-sdk-v5');
 // 创建实例
@@ -221,7 +221,7 @@ cos.sliceUploadFile({
 
 执行js文件
 
-```
+```powershell
 D:\>node 2.js
 warning: AppId has been deprecated, Please put it at the end of parameter Bucket(E.g: "test-1250000000").
 (node:11824) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
@@ -247,7 +247,7 @@ null { Location: '**********.cos.ap-shanghai.myqcloud.com/1.png',
 
 ###优化：上传到指定路径
 
-```
+```javascript
 var filepath='D:/135.png';
 var filename = filepath.substring(filepath.lastIndexOf("/")+1); 
 var today = new Date();
@@ -277,7 +277,7 @@ cos.sliceUploadFile({
 
 执行脚本
 
-```
+```powershell
 D:\>node 2.js
 warning: AppId has been deprecated, Please put it at the end of parameter Bucket(E.g: "test-1250000000").
 (node:7620) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
@@ -303,7 +303,7 @@ null { Location: '*.cos.*.myqcloud.com/2018/05/135.png',
 
 ### 优化：生成markdown格式
 
-```
+```javascript
 var picsuffix=new Array(".jpg", ".png", ".bmp", ".jpeg");
 function contains(arr, obj) {
   var i = arr.length;
@@ -358,7 +358,7 @@ cos.sliceUploadFile({
 
 - 修改之前的bat批处理文件
 
-  ```
+  ```powershell
   @echo off
   node D:\2.js %1%
   exit
@@ -366,7 +366,7 @@ cos.sliceUploadFile({
 
 - 修改js脚本
 
-  ```
+  ```javascript
   var picsuffix=new Array(".jpg", ".png", ".bmp", ".jpeg");
   function contains(arr, obj) {
     var i = arr.length;
