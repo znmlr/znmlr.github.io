@@ -1,8 +1,8 @@
 baseURL = "/"
-languageCode = "en-US"
-defaultContentLanguage = "en"
+languageCode = "zh"
+defaultContentLanguage = "zh"
 
-title = "Hugo Learn Documentation"
+title = "杨云召的个人博客"
 theme = "hugo-theme-learn"
 themesdir = "themes"
 metaDataFormat = "yaml"
