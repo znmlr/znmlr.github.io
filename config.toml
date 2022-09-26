@@ -43,6 +43,7 @@ title = "Hugo Relearn Documentation"
   # security reasons
   mermaidInitialize = "{ \"securityLevel\": \"loose\" }"
   additionalContentLanguage = [ "en" ]
+  alwaysopen = false
 
 [outputs]
   # add JSON to the home to support lunr search; This is a mandatory setting
