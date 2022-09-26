@@ -74,8 +74,14 @@ title = "Hugo Relearn Documentation"
     # - set the following `style` to a predefined style name
     # - remove the `@import` of the self-defined chroma stylesheet from your CSS files
     #   (here eg.: theme-relearn-light.css / theme-relearn-dark.css)
-    noClasses = false
-    # style = "tango"
+    # noClasses = false
+    style = "paraiso-dark"
+	# codeFences = false
+	hl_inline = false
+	tabWidth = 4
+	lineNoStart = 1
+    lineNos = true
+	lineNumbersInTable = false
 
   [markup.goldmark.renderer]
     # activated for this showcase to use HTML and JavaScript; decide on your own needs;
