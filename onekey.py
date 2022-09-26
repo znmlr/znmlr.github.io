@@ -10,7 +10,8 @@ def menu():
     Logger.printBlue("-----------------请选择数字后按回车-----------------")
     Logger.printGreen("0.重新发布网站");
     Logger.printGreen("1.本地运行网站");
-    Logger.printGreen("2.上传到github");
+    Logger.printGreen("2.提交代码到git");
+    Logger.printGreen("3.上传到github");
     Logger.printBlue("----------------------------------------------------")
     rst = input("请选择对应数字输入：")
     os.system("cls")
@@ -22,7 +23,8 @@ def deal(choice):
     switcher = {
         "0": foo0,
         "1": foo1,
-        "2": foo2
+        "2": foo2,
+        "3": foo3
     }
     if switcher.__contains__(choice):
         switcher[choice]()
@@ -35,8 +37,12 @@ def foo1():
     os.system("http-server public -p 80")
     
 def foo2():
+    Logger.printGreen("提交代码到git")
+    os.system("TortoiseGitProc.exe /command:commit")
+    
+def foo3():
     Logger.printGreen("上传到github")
-    os.system("rd public /s /q && hugo -D")
+    os.system("rd public /s /q && hugo -D && TortoiseGitProc.exe /command:push")
 ######################################################################
 class Logger:
     BLUE = 0x01
