@@ -1,6 +1,6 @@
 # this is a required setting for this theme to appear on https://themes.gohugo.io/
 # change this to a value appropriate for you
-baseURL = "https://example.com"
+baseURL = ""
 # as the official Hugo documentation recommends, we turn this off for this
 # showcase; this allows the published site to be served by both http and https
 canonifyURLs = false
@@ -16,8 +16,8 @@ theme = "hugo-theme-relearn"
 
 # the main language of this site; also an automatic pirrrate translation is
 # available in this showcase
-languageCode = "en"
-defaultContentLanguage = "en"
+languageCode = "zh-cn"
+defaultContentLanguage = "zh-cn"
 # if you want to get rrrid o' ourrr pirrrates nonsense uncomment th' next line
 # disableLanguages = ['pir']
 
@@ -28,22 +28,28 @@ title = "Hugo Relearn Documentation"
 # consult this documentation for explaination
 [params]
   editURL = "https://github.com/McShelby/hugo-theme-relearn/edit/main/exampleSite/content/"
-  description = "Documentation for Hugo Relearn Theme"
-  author = "Sören Weber"
-  showVisitedLinks = true
+  description = "杨云召的技术博客"
+  author = "杨云召"
+  showVisitedLinks = false
   collapsibleMenu = true
   disableBreadcrumb = false
   disableNextPrev = false
   disableLandingPageButton = true
   titleSeparator = "::"
-  themeVariant = [ "relearn-light", "relearn-dark", "learn", "neon", "blue", "green", "red" ]
+  #themeVariant = [ "relearn-light", "relearn-dark", "learn", "neon", "blue", "green", "red" ]
+  themeVariant = "learn"
   disableSeoHiddenPages = true
   # this is for the stylesheet generator to allow for interactivity in mermaid
   # graphs; you usually will not need it and you should remove this for
   # security reasons
   mermaidInitialize = "{ \"securityLevel\": \"loose\" }"
-  additionalContentLanguage = [ "en" ]
+  additionalContentLanguage = [ "zh-cn" ]
   alwaysopen = false
+  disableSearch = false
+  disableSearchHiddenPages = false
+  disableInlineCopyToClipBoard = false
+  disableLanguageSwitchingButton = true
+  disableToc = false
 
 [outputs]
   # add JSON to the home to support lunr search; This is a mandatory setting
@@ -89,6 +95,21 @@ title = "Hugo Relearn Documentation"
 # to your content or use fully-quallified URLs to link outside of
 # your project
 [Languages]
+  [Languages.zh-cn]
+    title = "杨云召的技术博客"
+    weight = 1
+    languageName = "zh-cn"
+    landingPageName = "<i class='fas fa-home'></i> Home"
+  [[Languages.zh-cn.menu.shortcuts]]
+    name = "<i class='fab fa-fw fa-github'></i> GitHub repo"
+    identifier = "ds"
+    url = "https://github.com/znmlr"
+    weight = 10
+  [[Languages.zh-cn.menu.shortcuts]]
+    name = "<i class='fas fa-tags'></i> Tags"
+    url = "/tags"
+    weight = 20
+	
   [Languages.en]
     title = "Hugo Relearn Theme"
     weight = 1
