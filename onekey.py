@@ -30,10 +30,13 @@ def deal(choice):
         switcher[choice]()
 def foo0():
     Logger.printGreen("重新发布网站")
-    os.system("rd public /s /q && hugo -D")
+    os.system("rd public /s /q")
+    os.system("hugo -D")
     
 def foo1():
     Logger.printGreen("本地运行网站")
+    os.system("rd public /s /q")
+    os.system("hugo -D")
     os.system("http-server public -p 80")
     
 def foo2():
@@ -42,7 +45,7 @@ def foo2():
     
 def foo3():
     Logger.printGreen("上传到github")
-    os.system("rd public /s /q && hugo -D && TortoiseGitProc.exe /command:push")
+    os.system("TortoiseGitProc.exe /command:push")
 ######################################################################
 class Logger:
     BLUE = 0x01
