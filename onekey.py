@@ -18,6 +18,7 @@ def menu():
     return rst
 def main():
     while True:
+        os.system("title 杨云召的技术博客")
         deal(menu())
 def deal(choice):
     switcher = {
@@ -28,6 +29,7 @@ def deal(choice):
     }
     if switcher.__contains__(choice):
         switcher[choice]()
+    os.system("title 杨云召的技术博客")
 def foo0():
     Logger.printGreen("重新发布网站")
     os.system("rd public /s /q")
