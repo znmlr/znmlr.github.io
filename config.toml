@@ -75,7 +75,7 @@ title = "Hugo Relearn Documentation"
     # - remove the `@import` of the self-defined chroma stylesheet from your CSS files
     #   (here eg.: theme-relearn-light.css / theme-relearn-dark.css)
     # noClasses = false
-    style = "paraiso-dark"
+    style = "solarized-dark256"
 	# codeFences = false
 	hl_inline = false
 	tabWidth = 4
