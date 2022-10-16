@@ -9,45 +9,62 @@ import datetime
 def menu():
     Logger.printBlue("-----------------请选择数字后按回车-----------------")
     Logger.printGreen("0.重新发布网站");
-    Logger.printGreen("1.本地运行网站");
-    Logger.printGreen("2.提交代码到git");
-    Logger.printGreen("3.上传到github");
+    Logger.printGreen("1.创建章节");
+    Logger.printGreen("2.创建文章");
+    Logger.printGreen("3.本地运行网站");
+    Logger.printGreen("4.提交代码到git");
+    Logger.printGreen("5.上传到github");
     Logger.printBlue("----------------------------------------------------")
     rst = input("请选择对应数字输入：")
     os.system("cls")
     return rst
+    
 def main():
     while True:
         os.system("title 杨云召的技术博客")
         deal(menu())
+        
 def deal(choice):
     switcher = {
-        "0": foo0,
-        "1": foo1,
-        "2": foo2,
-        "3": foo3
+        "0": republish,
+        "1": createChapter,
+        "2": createArticle,
+        "3": runLocally,
+        "4": gitCommit,
+        "5": gitSync
     }
     if switcher.__contains__(choice):
         switcher[choice]()
     os.system("title 杨云召的技术博客")
-def foo0():
+    
+def republish():
     Logger.printGreen("重新发布网站")
     os.system("rd public /s /q")
     os.system("hugo -D")
     
-def foo1():
+def runLocally():
     Logger.printGreen("本地运行网站")
     os.system("rd public /s /q")
     os.system("hugo -D")
     os.system("http-server public -p 80")
     
-def foo2():
+def gitCommit():
     Logger.printGreen("提交代码到git")
     os.system("TortoiseGitProc.exe /command:commit")
     
-def foo3():
+def gitSync():
     Logger.printGreen("上传到github")
     os.system("TortoiseGitProc.exe /command:push")
+    
+def createChapter():
+    Logger.printGreen("创建章节")
+    info = input("请输入路径及章节名：")
+    os.system("hugo new --kind chapter " + info)
+    
+def createArticle():
+    Logger.printGreen("创建文章")
+    info = input("请输入路径及文章名：")
+    os.system("hugo new " + info)
 ######################################################################
 class Logger:
     BLUE = 0x01
