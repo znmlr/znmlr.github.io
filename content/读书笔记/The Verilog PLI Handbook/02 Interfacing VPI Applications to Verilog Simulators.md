@@ -87,3 +87,74 @@ endmodule
 
 ### **Multiple instances of a system task or system function**
 
+```systemverilog
+module top;
+	...
+	middle m1 (...);				//module instance
+	middle m2 (...);				//module instance
+	
+    initial
+		$my_app_1(in1, out1);		//system task instance
+    
+	always @(posedge clock)
+		$my_app_1(in2, out2);		//system task instance
+endmodule
+
+module middle (...);
+    ...
+    bottom b1 (...);				//module instance
+    bottom b2 (...);				//module instance
+endmodule
+
+module bottom (...);
+    ...
+	initial
+		$my_app_2(in3, out3);		//system task instance
+
+    always @(posedge clock)
+		$my_app_2(in4, out4);		//system task instance
+endmodule
+```
+
+In the preceding example, four different conditions are shown that can exist in a Verilog simulation.
+
+- A single instance of a system task that is invoked one time.
+
+>  In module **top**, the first *instance* of *$my_app_1* is in a Verilog initial procedure, which will be called once at the beginning of a simulation.
+
+- A single instance of a system task that is invoked many times
+
+> In module **top**, the second *instance* of *$my_app_1* is in a Verilog always procedure, which will be called every positive edge of the clock signal.
+
+- Multiple instances of a system task that are each invoked one time
+
+> In module **bottom**, the first *instance* of *$my_app_2* is in a Verilog initial procedure, which will be called once at the beginning of a simulation.
+
+- Multiple instances of a system task that are each invoked many times
+
+> In module **bottom**, the second *instance* of *$my_app_2* is in a Verilog always procedure, which will be called every positive edge of the clock signal.
+
+Each of these system task instances will have unique logic values for the inputs and outputs. 
+
+One of the requirements of a PLI application is to allow for multiple unique instances of the application. 
+
+## *How PLI applications work*
+
+  ![image-20221017231903413](http://nas.znmlr.cn:15900/markdown/2022/10/image-20221017231903413.png)
+
+### **The types of PLI routines**
+
+- The VPI portion of PLI standard defines several types of PLI routines which can be associated with a system task or system function. 
+- The type of the routine determines **when** the simulator will execute the routine. 
+- Some types of routines are run-time routines, which are invoked during simulation, and some types are elaboration or linking time routines, which are invoked prior to simulation. 
+- The types of PLI routines are:
+
+> - **calltf routines**
+>
+> - **compiletf routines**
+>
+> - **sizetf routines**
+>
+> - **simulation callback routines**
+
+### **Associating routine types with system task/functions**
