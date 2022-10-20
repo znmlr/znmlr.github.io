@@ -158,3 +158,103 @@ One of the requirements of a PLI application is to allow for multiple unique ins
 > - **simulation callback routines**
 
 ### **Associating routine types with system task/functions**
+
+- *calltf routine*
+- *compiletf routine*
+- *sizetf routine*
+- *simulation callback routine*
+
+### **Special PLI data types for portability**
+
+- The VPI library defines several fixed-width data types, which are used by the routines in the VPI library.
+
+   ![image-20221020221612159](http://nas.znmlr.cn:15900/markdown/2022/10/image-20221020221612159.png)
+
+## *calltf routines*
+
+- The **calltf routine** is executed when simulation is running. For the *$pow* example that follows, at every positive edge of clock the *calltf routine* associated with *$pow* will be executed by the simulator. 
+
+  ![image-20221020221848452](http://nas.znmlr.cn:15900/markdown/2022/10/image-20221020221848452.png)
+
+## *compiletf routines*
+
+- The **compiletf routine** is called by the simulator before simulation starts running—in other words, before simulation time 0. 
+
+- The routine may be called by the simulator’s compiler or elaborator, when the simulator loads and prepares its simulation data structure. The purpose of *compiletf routine* is to verify that a system task/function is being used correctly.
+
+  ![image-20221020222125689](http://nas.znmlr.cn:15900/markdown/2022/10/image-20221020222125689.png)
+
+- Use a *compiletf routine* to improve the performance of PLI programs. Since this routine is only called one time prior to simulation time 0, the code to check the correctness of arguments is only executed once. The *calltf routine,* which may be invoked millions of times during a simulation, does not need to repeat the syntax checking, and therefore can execute more efficiently.
+- The *compiletf routine* will be called one time for each instance of a user-defined system task/function. If a design used the *$pow* user-defined system function in three different places, the *compiletf routine* for *$pow* would be called three times. If a simulator allows system tasks and system functions to be invoked from the simulator’s debug command line, then the *compiletf routine* will be called prior to execution of the *calltf routine* for each interactive usage.
+
+### **Limitations on compiletf callbacks**
+
+- **The compiletf routine should only be used for syntax checking!** 
+
+- To ensure that a PLI application will be portable, only the following activities should be performed in a *compiletf routine:*
+
+> - Accessing the arguments of an instance of a system task/function. 
+> - Using VPI routines such as `vpi_printf()`, which do not access objects in simulation. 
+> - Registering *simulation callback routines* using `vpi_register_cb()` for the end of elaboration/linking or the start of simulation. 
+
+## *sizetf routines*
+
+- The **sizetf routine** is only used with system functions that are registered with the `sys-functype` as **vpiSizedFunc** or **vpiSizedSignedFunc**. These types indicate that the system function returns scalar or vector values.
+
+-  Because these function types return a user-specified number of bits, the simulator compiler or elaborator may need to know how many bits to expect from the return, in order to correctly compile the statement from which the system function is called. 
+
+- A *sizetf routine* is called one time, before simulation time 0. The *sizetf routine* returns to the simulator how many bits wide the return value of system function will be.
+
+- In the *$pow* example, the *calltf routine* will return a 32-bit value. Therefore, the *sizetf* *routine* associated with *$pow* needs to return a value of 32 to the simulator.
+
+  ![image-20221020223232114](http://nas.znmlr.cn:15900/markdown/2022/10/image-20221020223232114.png)
+
+### **Limitations on sizetf callbacks**
+
+- The intent of the *sizetf routine* is to notify the simulator compiler or elaborator of the return size for system functions. 
+- The simulator may invoke the *sizetf routine* very early in the elaboration/linking phase of a Verilog design, and, at this early stage, the Verilog hierarchy may not have been generated. 
+- In addition, the *sizetf routine* is only called one time for a system function name, and the return size applied to all instances of the system function. 
+- For these reasons, only standard C language statements and functions should be used in a *sizetf routine.* 
+- An error may result if any VPI routines are called from a *sizetf routine.* Any memory or static variables allocated by a *sizetf* *routine* may not remain in effect for when simulation starts running.
+
+## *VPI Simulation callback routines*
+
+- The VPI provides a means for PLI applications to be called for specific simulation events. 
+- The VPI portion of the PLI standard refers to these types of routines as **simulation callback routines.** 
+- Some examples of simulation related callbacks are:
+
+> - The beginning of Verilog simulation (just before the start of simulation time 0).
+> - Entering debug mode (such as when the *$stop* built-in system task is executed).
+> - End of simulation (such as when the *$finish* built-in system task is executed).
+> - Change of value of a signal.
+> - Execution of a Verilog procedural statement.
+
+- A common usage of *simulation callback routines* is to perform tasks at the very beginning and the very end of a simulation. For example, a PLI application to read test vectors might need to open a test vector file at the start of simulation, and close the file at the end of simulation.
+
+  ![image-20221020225734916](http://nas.znmlr.cn:15900/markdown/2022/10/image-20221020225734916.png)
+
+## *PLI routine inputs and outputs*
+
+- All types of PLI routines are C functions, and a Verilog simulator will utilize the inputs and return values of the functions when the simulator calls the functions. 
+- The input that is passed to the *compiletf routine, calltf routine* and *sizetf routine* is a pointer, which points to the user_data value that was specified when the system task/function was registered. 
+- The *compiletf routine, calltf routine, sizetf routine* and *simulation callback routine* are expected to be integer functions in the PLI standard. 
+- However, the only return value which is used by the simulator is the return of the *sizetf routine,* which represents the bit-width of the system function return value. 
+- The return value from the *compiletf* *routine, calltf routine* and *simulation callback routine* are not used, and are ignored by the simulator.
+
+## *A complete system function example* — *$pow*
+
+The following example illustrates all the parts of a complete system function, with the user-defined name of **$pow.**
+
+- The system function will return a 32-bit value.
+
+- The system function requires two arguments, a base value and an exponent value. Both arguments must be numeric integer values.
+
+To implement the *$pow* functionality, four user-defined PLI routines are used:
+
+- A **sizetf routine** to establish the return size of *$pow.*
+
+- A VPI **compiletf routine** to verify that the *$pow* arguments are valid values.
+
+- A **calltf routine** to calculate the base to the power of the exponent each time *$pow* is executed by the simulator.
+
+- A VPI **simulation callback routine** to print a message when simulation firsts starts running (immediately prior to simulation time 0).
