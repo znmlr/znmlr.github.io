@@ -561,3 +561,28 @@ void PLlbook_test_user_data_register()
 ```
 
 Both system tasks invoke the same *calltf routine,* but the **user_data** value for the two system task names is a pointer to a different block of application-allocated storage. Therefore, the *calltf routine* can check the **user_data** value to determine which system task name was used to call the routine.
+
+The user_data value is passed to the callback routine as a C function input of type **PLI_BYTE8** . The following example illustrates reading the user_data value for the two system tasks registered in the previous example:
+
+```c
+PLI_INT32 ReadVectorCalltf(PLI_BYTE8 *user_data)
+{
+	vpi_printf("\nIn calltf, \tuser_data = %d\n", *user_data);
+    if (*user_data == 1) {
+        vpi_printf("calltf was invoked by $get_vector_bin()\n");
+        /* read test vectors as binary values */
+    }
+    else if (*user_data == 2) {
+        vpi_printf("calltf was invoked by $get_vector_hex()\n");
+        /* read test vectors as hex values */
+    }
+    return(0);
+}
+```
+
+## *Compiling and linking PLI applications*
+
+- After the C source files for the PLI applications have been defined, they must be compiled and linked into a Verilog simulator. 
+- This allows the simulator to call the appropriate PLI routine when the PLI application system task or system function is encountered by the simulator. 
+- The compiling and linking process is not part of the IEEE standard for the PLI. 
+- This process is defined by the simulator vendor, and is specific to both the simulator and the operating system on which the application is compiled. 
