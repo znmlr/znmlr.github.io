@@ -233,3 +233,239 @@ vpiHandle vpi_handle_by_index (
 
 ### **Obtaining handles for reg, variable and net arrays**
 
+The following statement in the Verilog HDL declares a 3-dimensional array of 16-bit wide nets (each element in the array is 16 bits wide):
+
+```verilog
+wire [15:0] foo [0:127][0:127] [0:7] ; // 3-D array
+```
+
+Examples of a word-select and a bit-select within the preceding array are:
+
+```verilog
+vector = foo[25][0][100]; //select full word from array
+bit = foo[25][0][100][5]; //select bit 5 from an array word
+```
+
+A handle to a multi-dimensional array of nets, regs or named events can be obtained in several ways using the VPI library:
+
+- Pass the name of the array as a task/function argument.
+
+- Iterate on all net, reg or named event array objects, for example using vpi_iterate(vpiNetArray, module_handle).
+
+- Iterate on all memory array objects using vpi_iterate(vpiMemory, module_or_scope_handle); note that this will only obtain one-dimensional reg arrays, and not reg arrays with more than one dimension.
+
+A handle to a word within an array can be obtained:
+
+- As a handle to an expression, when a word-select from an array is used in a Verilog expression.
+
+- With a handle to an array with any number of dimensions, iterate on each word within the array.
+
+- Directly access a specific word by its index in a one-dimensional reg array, using vpi_handle_by_index(memory_handle, index_number).
+
+- Directly access a specific word by its index in a multi-dimensional array of any type, using vpi_handle_by_multi_index(array_handle, array_size, index_array).
+
+**vpi_handle_by_multi_index()** is used to obtain a handle for a word within an array, or bit-select of a word out of an array object. This routine was added with the IEEE 1364-2001 standard. The routine requires three inputs:
+
+```c
+vpiHandle vpi_handle_by_multi_index (
+    vpiHandle object,			/* handle for an array object 			*/
+    PLI_INT32 array_size,		/* number or elements in the index array*/
+    PLI_INT32 * index_array)	/* pointer to an array of indices 		*/
+```
+
+The following statement in the Verilog HDL declares a 3-dimensional array of 16-bit wide nets (each element in the array is 16 bits wide):
+
+```verilog
+wire [15:0] foo [0:127][0:127][0:7]; // 3-D array
+```
+
+Assuming a handle for the array had already been obtained, the following example would obtain a handle for a specific 16-bit net within the array, specifically `foo[25][0][100]`:
+
+```c
+vpiHandle array_handle, net_handle;
+PLI_INT32 indices[10]; /* up to a 10-dimensional array */
+
+/* add code to obtain handle for the array */
+indices[0] = 25; indices[1] = 0; indices[2] = 100;
+net_handle = vpi_handle_by_multi_index(array_handle, 3, indices);
+```
+
+#### Variable arrays
+
+A object is represented a differently than a reg array, net array or named event array. A variables object may represent a single variable or it may be an
+
+array of variables (whereas a net, reg or named event object is always a single object, and never an array).
+
+A handle for a variable or variable array is obtained the same way, by using vpi_iterate (vpiVariables, module_or_scope_handle). Once the handle is obtained, the boolean property **vpiArray** is used to determine if a variable object is an array.
+
+- If the **vpiArray** property is false, then the variable object is a single variable. The **vpiSize** property will be the number of bits in the variable, and the expressions accessed by **vpiLeftRange** and **vpiRightRange** will indicate the most-significant and least-significant bit numbers, respectively.
+
+- If the **vpiArray** property is true, then the variable object is an array of variables. The**vpiSize** property will be the number of elements in the array, and the expressions accessed by**vpiLeftRange** and **vpiRightRange** will indicate the first address and last address of the array, respectively.
+
+### **System task/function arguments**
+
+A user-defined system task or system function can have any number of arguments, including none. The VPI standard does not specify an index number for task/function arguments, but the TF and ACC libraries number the arguments from left to right, starting with 1. For convenience in describing PLI applications, this book uses the same numbering scheme in the VPI chapters. In the following example:
+
+ ![image-20221030102510627](https://nas.znmlr.cn:15900/markdown/2022/10/image-20221030102510627.png)
+
+### **Multiple instances of system tasks and system functions**
+
+Each instance of a system task/function is unique, and has unique argument values. However, each instance is associated with the same *calltf routine.* For example:
+
+```c
+always @(posedge clock)
+	$read_test_vector(“A.dat”, data_bus);
+always @(negedge clock)
+	$read_test_vector(“B.dat”, data_bus);
+```
+
+### **Obtaining a handle for a system task/function instance**
+
+An instance of a system task or system function is an object, and the VPI routines can obtain a handle for this object. This handle will be unique for each instance of the system task/function. 
+
+### **Accessing the arguments of system tasks and system functions**
+
+Once a handle for an instance of a system task or system function is obtained, the arguments to the system task/function can be accessed by obtaining handles for the arguments. In the Verilog HDL, many different values and data types can be used as a task/function argument—an integer number, a variable name, a net name, a module instance name, or a literal string are just a few of the legal arguments. 
+
+```c
+int PLIbook_count_args_vpi()
+{
+    vpiHandle systf_h, arg_itr, arg_h;
+    int tfnum = 0;
+    s_vpi_error_info err; /* structure for error handling */
+    
+    systf_h = vpi_handle(vpiSysTfCall, NULL);
+#if PLIbookDebug /* if error, generate verbose debug message */
+    if (vpi_chk_error(&err)) {
+    	vpi_printf("ERROR: PLIbook_count_args_vpi() could not obtain handle to systf call\n");
+    	vpi_printf("File %s, Line %d: %s\n", err.file, err.line, err.message);
+    }
+#else /* if error, generate brief error message */
+    if (systf_h == NULL)
+    	vpi_printf("ERROR: PLIbook_count_args_vpi() could not obtain handle to systf call\n");
+#endif
+    arg_itr = vpi_iterate(vpiArgument, systf_h);
+#if PLIbookDebug /* if error, generate verbose debug message */
+    if (vpi_chk_error(&err)) {
+    	vpi_printf("ERROR: PLIbook_count_args_vpi() could not obtain iterator to systf args\n");
+    	vpi_printf("File %s, Line %d: %s\n", err.file, err.line, err.message);
+    }
+#else /* if error, generate brief error message */
+    if (arg_itr == NULL)
+    	vpi_printf("ERROR: PLIbook_count_args_vpi() could not obtain iterator to systf args\n");
+#endif
+    while (arg_h = vpi_scan(arg_itr) ) {
+    	tfnum++;
+    }
+    return(tfnum);
+}
+```
+
+```c
+vpiHandle PLIbook_get_arg_handle_vpi(int argNum)
+{
+	vpiHandle systf_h, arg_itr, arg_h;
+	int i;
+	s_vpi_error_info err; /* structure for error handling */
+
+    if (argNum < 1) {
+#if PLIbookDebug /* if error, generate verbose debug message */
+		vpi_printf("ERROR: PLIbook_get_arg_handle_vpi() arg index of %d is invalid\n", argNum);
+#endif
+		return(NULL);
+	}
+    
+	systf_h = vpi_handle(vpiSysTfCall, NULL);
+#if PLIbookDebug /* if error, generate verbose debug message */
+	if (vpi_chk_error(&err)) {
+		vpi_printf( "ERROR: PLIbook_get_arg_handle_vpi () could not obtain handle to systf call\n");
+        vpi_printf("File %s, Line %d: %s\n", err.file, err.line, err.message);
+	}
+#else /* if error, generate brief error message */
+	if (systf_h == NULL) {
+		vpi_printf("ERROR: PLIbook_get_arg_handle_vpi() could not obtain handle to systf call\n");
+		return(NULL);
+	}
+#endif
+
+    arg_itr = vpi_iterate(vpiArgument, systf_h);
+#if PLIbookDebug /* if error, generate verbose debug message */
+	if (vpi_chk_error(&err)) {
+		vpi_printf("ERROR: PLIbook_get_arg_handle_vpi() could not obtain iterator to systf args\n");
+		vpi_printf("File %s, Line %d: %s\n", err.file, err.line, err.message);
+	}
+#else /* if error, generate brief error message */
+	if (systf_h == NULL) {
+		vpi_printf("ERROR: PLIbook_get_arg_handle_vpi() could not obtain iterator to systf args\n");
+		return(NULL);
+	}
+#endif
+	for (i=1; i<=argNum; i++) {
+		arg_h = vpi_scan(arg_itr);
+#if PLIbookDebug /* if error, generate verbose debug message */
+        if (vpi_chk_error(&err)) {
+        	vpi_printf("ERROR: PLIbook_get_arg_handle_vpi() could not obtain handle to systf arg %d\n", i);
+        	vpi_printf("File %s, Line %d: %s\n", err.file, err.line, err.message);
+        }
+#endif
+		if (arg_h == NULL) {
+#if PLIbookDebug /* if error, generate verbose debug message */
+			vpi_printf("ERROR: PLIbook_get_arg_handle_vpi() arg index of %d is out-of-range\n", argNum);
+#endif
+			return(NULL);
+		}
+	}
+	if (arg_h != NULL)
+		vpi_free_object(arg_itr); /* free iterator--didn’t scan all args */
+	return(arg_h);
+}
+```
+
+## *Storing data for each instance of a system task/junction*
+
+- There are many circumstances where a PLI application may need to preserve information from one call to a PLI application to another call to the same application. 
+- In order to store the system task/function arguments, unique storage must be allocated for each instance of a system task or function
+
+- A PLI application is a C function, which is called by the Verilog simulator. Local variables within a C function are automatic, which means any variables (such as an array to store the argument handles) do not remain allocated from one call of the function to another call.
+
+- A common solution in the C programming language to preserve data is to declare a static variables, instead of automatic variables. Another method is to use global vari ables instead of local variables. **These C programming techniques can cause serious problems in PLI applications!** 
+
+- The Verilog HDL allows a system task/function to be used multiple times in the Verilog source code, and each module which uses the task/function can be instantiated multiple times. Each occurrence in each instance of a module becomes a unique **instance** of the system task/function. However, in the PLI application, the same C function will be called by the simulator for each instance. A static or global variable cannot hold different values for each instance of the system task/function. 
+
+- **Using static or global vari ables is a sure way to have problems when there are multiple instances of a system task or system function.** Therefore, a PLI application must allocate storage that is unique to each instance of a system task/function.
+
+- The VPI standard provides a special storage location for each instance of a system task or system function. This instance-specific storage is allocated automatically by the simulator, and is available for use by a PLI application whenever needed. Special VPI routines are provided to read and write values in the instance-specific storage area. The storage area is shared by all routines which are associated with the systemtask/function, which are the *calltf, compiletf* and *sizetf routines.*
+
+```c
+PLI_INT32 vpi_put_userdata (
+    vpiHandle tfcall,	/*handle for a system task or system function call 	*/
+    void *data)			/*pointer to application-allocated storage 			*/
+
+void *vpi_get_userdata (
+	vpiHandle tfcall) 	/*handle for a system task or system function call	*/
+```
+
+- vpi_put_userdata () stores a pointer to application-allocated storage into simulator-allocated storage for an instance of a system task or function. The routine returns 1 if successful and 0 if an error occurred. The simulation-allocated storage will persist throughout simulation. vpi_get_userdata () retrieves a pointer to the data that was stored using vpi_put_userdata(). The routine returns NULL if no data has been stored.
+
+### **Storing a single value in the VPI instance-specific storage area**
+
+- The instance-specific storage area is defined to be a pointer, which can store a single value. The value to be stored should be cast to a void pointer. An example of storing a single integer value in the work area is:
+
+```c
+int arg_count;
+/* add code to count number of task/function arguments */
+vpi_put_userdata(systf_handle, (void *)arg_count);
+```
+
+### **Storing multiple values in the VPI instance-specific storage area**
+
+- Multiple values can be stored by allocating a block of memory and storing a pointer to the memory in the storage area.
+
+```verilog
+always @(posedge clock)
+	$ALU(a_bus, b_bus, opcode, result_bus, overflow);
+	
+always @(negedge clock)
+	$ALU(in1, in2, control, out1);
+```
+
